@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8dersut36nvg"]
+
+[ext_resource type="Script" uid="uid://cv8e7jw7ornon" path="res://items/gem/gem_spinner/gem_spinner.gd" id="1_rqj46"]
+[ext_resource type="Texture2D" uid="uid://chu7f5dpm0awy" path="res://items/gem/gems_2_highlight.png" id="2_p2ws7"]
+
+[node name="GemSpinner" type="Node2D"]
+script = ExtResource("1_rqj46")
+
+[node name="TurnTable" type="Node2D" parent="."]
+
+[node name="Gem1Pos" type="Marker2D" parent="TurnTable"]
+position = Vector2(100, 0)
+
+[node name="Gem2Pos" type="Marker2D" parent="TurnTable"]
+position = Vector2(-50, 86.60254)
+
+[node name="Gem3Pos" type="Marker2D" parent="TurnTable"]
+position = Vector2(-50, -86.60254)
+
+[node name="GemSprites" type="Node2D" parent="."]
+
+[node name="Gem1" type="Sprite2D" parent="GemSprites"]
+position = Vector2(100, 0)
+texture = ExtResource("2_p2ws7")
+hframes = 3
+
+[node name="Gem2" type="Sprite2D" parent="GemSprites"]
+position = Vector2(-50, 86.60254)
+texture = ExtResource("2_p2ws7")
+hframes = 3
+frame = 1
+
+[node name="Gem3" type="Sprite2D" parent="GemSprites"]
+position = Vector2(-50, -86.60254)
+texture = ExtResource("2_p2ws7")
+hframes = 3
+frame = 2

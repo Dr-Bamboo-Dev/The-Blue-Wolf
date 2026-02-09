@@ -1,0 +1,130 @@
+[gd_scene load_steps=20 format=3 uid="uid://cnsoqrywcyv2b"]
+
+[ext_resource type="Texture2D" uid="uid://nbn7mo6ufh8q" path="res://prey/rabbit/rabbit_hop_1.tres" id="1_pl1yp"]
+[ext_resource type="Script" uid="uid://qoen64vuit3c" path="res://prey/rabbit/rabbit.gd" id="1_v0u76"]
+[ext_resource type="Curve" uid="uid://bo0im7x12y1sa" path="res://prey/rabbit/hop_acceleration_curve.tres" id="2_pocyo"]
+[ext_resource type="Texture2D" uid="uid://ce2tgf5dylrix" path="res://prey/rabbit/rabbit_hop_2.tres" id="2_synkn"]
+[ext_resource type="Texture2D" uid="uid://b0j8ydki4vr4e" path="res://prey/rabbit/rabbit_hop_3.tres" id="3_v0u76"]
+[ext_resource type="Texture2D" uid="uid://bqv8f4hgps4df" path="res://prey/rabbit/rabbit_hop_4.tres" id="4_5wunr"]
+[ext_resource type="Texture2D" uid="uid://b5qam6svdfy6w" path="res://prey/rabbit/rabbit_hop_5.tres" id="5_pocyo"]
+[ext_resource type="Texture2D" uid="uid://djvx04cp3m6u7" path="res://prey/rabbit/rabbit_hop_6.tres" id="6_j81fc"]
+[ext_resource type="Script" uid="uid://dadrrwt7cvrad" path="res://prey/rabbit/rabbit_animator.gd" id="8_5wunr"]
+[ext_resource type="Script" uid="uid://4s2vr1oxi774" path="res://prey/state_machine.gd" id="10_bypkh"]
+[ext_resource type="Script" uid="uid://2knhac03dlgp" path="res://prey/rabbit/rabbit_hop.gd" id="11_28q3g"]
+[ext_resource type="Script" uid="uid://o1khf7u4luqh" path="res://prey/rabbit/rabbit_inactive.gd" id="12_42ful"]
+[ext_resource type="Curve" uid="uid://dnvdyho0chjg3" path="res://prey/rabbit/startup_acceleration_curve.tres" id="12_sklpe"]
+[ext_resource type="Script" uid="uid://cbqtut7ufeisk" path="res://prey/rabbit/rabbit_chomped.gd" id="13_28q3g"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3fx4s"]
+radius = 5.0
+height = 46.0
+
+[sub_resource type="Animation" id="Animation_bypkh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RabbitSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_pl1yp")]
+}
+
+[sub_resource type="Animation" id="Animation_l3701"]
+resource_name = "hop"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RabbitSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.4, 0.53333336, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_pl1yp"), ExtResource("2_synkn"), ExtResource("3_v0u76"), ExtResource("4_5wunr"), ExtResource("5_pocyo"), ExtResource("6_j81fc")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_28q3g"]
+_data = {
+&"RESET": SubResource("Animation_bypkh"),
+&"hop": SubResource("Animation_l3701")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bypkh"]
+radius = 21.0
+height = 52.0
+
+[node name="Rabbit" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 1536
+motion_mode = 1
+script = ExtResource("1_v0u76")
+
+[node name="RabbitShape" type="CollisionShape2D" parent="."]
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_3fx4s")
+
+[node name="RabbitSprite" type="Sprite2D" parent="."]
+position = Vector2(5.9604645e-08, -19)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("1_pl1yp")
+region_rect = Rect2(-32.979736, -29.550415, 168.97974, 163.55042)
+
+[node name="RabbitAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_28q3g")
+}
+speed_scale = 1.558
+script = ExtResource("8_5wunr")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("10_bypkh")
+initial_state = NodePath("RabbitInactive")
+metadata/_custom_type_script = "uid://4s2vr1oxi774"
+
+[node name="RabbitInactive" type="Node" parent="StateMachine" node_paths=PackedStringArray("rabbit_sprite", "rabbit_animator")]
+script = ExtResource("12_42ful")
+rabbit_sprite = NodePath("../../RabbitSprite")
+rabbit_animator = NodePath("../../RabbitAnimator")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="RabbitHop" type="Node" parent="StateMachine" node_paths=PackedStringArray("rabbit", "rabbit_animator")]
+script = ExtResource("11_28q3g")
+startup_acceleration_curve = ExtResource("12_sklpe")
+hop_acceleration_curve = ExtResource("2_pocyo")
+rabbit = NodePath("../..")
+rabbit_animator = NodePath("../../RabbitAnimator")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="RabbitChomped" type="Node" parent="StateMachine" node_paths=PackedStringArray("rabbit", "rabbit_animator", "ouch_area", "ouch_shape")]
+script = ExtResource("13_28q3g")
+rabbit = NodePath("../..")
+rabbit_animator = NodePath("../../RabbitAnimator")
+ouch_area = NodePath("../../OuchArea")
+ouch_shape = NodePath("../../OuchArea/AreaShape")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="RabbitVisNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+z_index = -1
+rect = Rect2(-29, -42, 58, 46)
+
+[node name="OuchArea" type="Area2D" parent="." groups=["Food"]]
+collision_layer = 64
+collision_mask = 2
+
+[node name="AreaShape" type="CollisionShape2D" parent="OuchArea"]
+position = Vector2(1, -18)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_bypkh")
+debug_color = Color(0.8074408, 0.36808673, 0.5083231, 0.41960785)
+
+[connection signal="screen_entered" from="RabbitVisNotifier" to="StateMachine/RabbitInactive" method="_on_rabbit_vis_notifier_screen_entered"]
+[connection signal="screen_exited" from="RabbitVisNotifier" to="StateMachine/RabbitHop" method="_on_rabbit_vis_notifier_screen_exited"]
+[connection signal="area_entered" from="OuchArea" to="StateMachine/RabbitHop" method="_on_ouch_area_area_entered"]

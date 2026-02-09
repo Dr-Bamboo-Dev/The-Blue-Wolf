@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccvi8iou6trg8"]
+
+[ext_resource type="Script" uid="uid://bgwokh8d0tk0q" path="res://world/props/prop.gd" id="1_nldkk"]
+[ext_resource type="Texture2D" uid="uid://b87bvjm4a60tq" path="res://world/props/fern.png" id="1_qns3w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0fhy"]
+size = Vector2(121, 63)
+
+[node name="Fern" type="Node2D"]
+script = ExtResource("1_nldkk")
+metadata/_custom_type_script = "uid://bgwokh8d0tk0q"
+
+[node name="PropSprite" type="Sprite2D" parent="."]
+position = Vector2(-19, -19)
+texture = ExtResource("1_qns3w")
+
+[node name="VisArea" type="Area2D" parent="."]
+collision_layer = 2048
+collision_mask = 1536
+
+[node name="AreaShape" type="CollisionShape2D" parent="VisArea"]
+z_index = -1
+position = Vector2(-19.5, -29.5)
+shape = SubResource("RectangleShape2D_o0fhy")
+debug_color = Color(0.949, 0.949, 0.949, 0.125)

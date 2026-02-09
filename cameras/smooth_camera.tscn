@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://ijapf43f53be"]
+
+[ext_resource type="Script" uid="uid://dq3td1i738el4" path="res://cameras/smooth_camera.gd" id="1_rcuxy"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_rcuxy"]
+action = &"move_north"
+pressed = true
+
+[sub_resource type="InputEventAction" id="InputEventAction_4uwo0"]
+action = &"move_south"
+pressed = true
+
+[sub_resource type="InputEventAction" id="InputEventAction_qn5j8"]
+action = &"move_west"
+pressed = true
+
+[sub_resource type="InputEventAction" id="InputEventAction_qesiu"]
+action = &"move_east"
+pressed = true
+
+[node name="SmoothCamera" type="Camera2D" unique_id=1251272242]
+script = ExtResource("1_rcuxy")
+move_north = SubResource("InputEventAction_rcuxy")
+move_south = SubResource("InputEventAction_4uwo0")
+move_west = SubResource("InputEventAction_qn5j8")
+move_east = SubResource("InputEventAction_qesiu")
+relative_to_player = true
+metadata/_custom_type_script = "uid://dq3td1i738el4"

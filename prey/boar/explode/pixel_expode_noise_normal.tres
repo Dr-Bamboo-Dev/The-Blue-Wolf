@@ -1,0 +1,12 @@
+[gd_resource type="NoiseTexture2D" format=3 uid="uid://consaadkuham7"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tb8mp"]
+noise_type = 0
+frequency = 0.1
+
+[resource]
+width = 299
+height = 169
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_tb8mp")
+as_normal_map = true

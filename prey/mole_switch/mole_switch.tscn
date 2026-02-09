@@ -1,0 +1,153 @@
+[gd_scene load_steps=14 format=3 uid="uid://bg0spmeitkri0"]
+
+[ext_resource type="Texture2D" uid="uid://c1f50mhueh75" path="res://prey/mole_switch/mole_hole.png" id="1_2tip5"]
+[ext_resource type="Script" uid="uid://ls0gj51ykqa7" path="res://prey/mole_switch/mole_switch.gd" id="1_6ukmx"]
+[ext_resource type="Texture2D" uid="uid://d4ffvc43lkhaf" path="res://prey/mole_switch/mole_switch.png" id="2_6ukmx"]
+[ext_resource type="Shader" uid="uid://bb5o76olcmw7r" path="res://prey/mole_switch/mole_switch.gdshader" id="3_vin3o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_usuwe"]
+resource_local_to_scene = true
+shader = ExtResource("3_vin3o")
+shader_parameter/red_mode = true
+
+[sub_resource type="Animation" id="Animation_usuwe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MoleSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_m5i8m"]
+resource_name = "down"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MoleSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_vin3o"]
+resource_name = "duck"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MoleSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_3viul"]
+resource_name = "popup"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MoleSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 3, 2, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m5i8m"]
+_data = {
+&"RESET": SubResource("Animation_usuwe"),
+&"down": SubResource("Animation_m5i8m"),
+&"duck": SubResource("Animation_vin3o"),
+&"popup": SubResource("Animation_3viul")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vin3o"]
+radius = 38.0
+height = 94.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vin3o"]
+size = Vector2(42, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_usuwe"]
+size = Vector2(42, 50)
+
+[node name="MoleSwitch" type="Node2D"]
+script = ExtResource("1_6ukmx")
+
+[node name="HoleSprite" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-22, -8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_2tip5")
+centered = false
+
+[node name="MoleSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_usuwe")
+position = Vector2(-32, -40)
+scale = Vector2(2, 2)
+texture = ExtResource("2_6ukmx")
+centered = false
+hframes = 6
+
+[node name="MoleAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_m5i8m")
+}
+speed_scale = 2.0
+
+[node name="OuchArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="AreaShape" type="CollisionShape2D" parent="OuchArea"]
+z_index = -2
+position = Vector2(-1, -16)
+shape = SubResource("CapsuleShape2D_vin3o")
+debug_color = Color(0.5902974, 0.41283098, 0.9246465, 0.41960785)
+
+[node name="MoleBody" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="BodyShape" type="CollisionShape2D" parent="MoleBody"]
+z_index = -2
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_vin3o")
+
+[node name="VisArea" type="Area2D" parent="."]
+collision_layer = 2048
+collision_mask = 1536
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisArea"]
+z_index = -1
+position = Vector2(-1, -15)
+shape = SubResource("RectangleShape2D_usuwe")
+debug_color = Color(0.949, 0.949, 0.949, 0.125)
+
+[node name="MoleVisEnabler" type="VisibleOnScreenEnabler2D" parent="."]
+z_index = -2
+rect = Rect2(-22, -40, 42, 50)
+
+[connection signal="animation_finished" from="MoleAnimator" to="." method="_on_mole_animator_animation_finished"]
+[connection signal="area_entered" from="OuchArea" to="." method="_on_ouch_area_area_entered"]
+[connection signal="screen_entered" from="MoleVisEnabler" to="." method="_on_mole_vis_enabler_screen_entered"]

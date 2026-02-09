@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bah7cmiaqpwwj"]
+
+[ext_resource type="Script" uid="uid://stjxl40fvnpx" path="res://hud/touch_joystick/floating_touch_joystick.gd" id="1_x55wv"]
+[ext_resource type="PackedScene" uid="uid://dd5862y2qvkki" path="res://hud/touch_joystick/touch_joystick.tscn" id="2_x5igx"]
+
+[node name="FloatingTouchJoystick" type="Node2D" unique_id=1856481914]
+script = ExtResource("1_x55wv")
+
+[node name="FloatArea" type="Area2D" parent="." unique_id=888709384]
+
+[node name="FloatShape" type="CollisionPolygon2D" parent="FloatArea" unique_id=931172485]
+polygon = PackedVector2Array(0, 384, 448, 384, 576, 512, 576, 720, 0, 720)
+
+[node name="TouchJoystick" parent="." unique_id=1671126795 instance=ExtResource("2_x5igx")]
+position = Vector2(280, 544)

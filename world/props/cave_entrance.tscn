@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://c60lfymrxhbjn"]
+
+[ext_resource type="Texture2D" uid="uid://xr2sh6t5u53n" path="res://world/props/cave_dome_all_in_one.png" id="1_6er5o"]
+
+[node name="CaveEntrance" type="Node2D"]
+
+[node name="DomeBehind" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-203.5, -99.5)
+texture = ExtResource("1_6er5o")
+region_enabled = true
+region_rect = Rect2(0, 0, 1429, 1429)
+
+[node name="DomeFront" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-175.5, -99.5)
+texture = ExtResource("1_6er5o")
+region_enabled = true
+region_rect = Rect2(1429, 0, 1429, 1429)
+
+[node name="CaveCollision" type="StaticBody2D" parent="."]
+visible = false
+z_index = 1
+collision_layer = 4
+collision_mask = 0
+
+[node name="CaveShape1" type="CollisionPolygon2D" parent="CaveCollision"]
+polygon = PackedVector2Array(256, 65, 179, 143, 135, 137, 99, 130, 63, 114, 41, 98, 1, 76, 1, 1, 255, 1)
+
+[node name="CaveShape2" type="CollisionPolygon2D" parent="CaveCollision"]
+polygon = PackedVector2Array(55, 232, 0, 196, 0, 255, 30, 255)
+
+[node name="CaveShape3" type="CollisionPolygon2D" parent="CaveCollision"]
+polygon = PackedVector2Array(257, 64, 328, -19, 403, -123, 430, -240, 414, -396, 311, -500, 146, -625, -68, -689, -283, -710, -504, -623, -648, -519, -816, -260, -896, -195, -906, -93, -894, 118, -853, 169, -768, 223, -626, 273, -461, 305, -340, 298, -122, 298, -20, 278, 28, 258, 0, 200, -116, 110, -116, 45, 1, 76, 0, 1, 257, 2)

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://casvbo4csgbbn"]
+
+[ext_resource type="Script" uid="uid://dhnrliey56w0c" path="res://items/ham/ham_particles.gd" id="1_me1tr"]
+[ext_resource type="Texture2D" uid="uid://bibt1jxfeibhx" path="res://items/ham/ham_particle.png" id="2_kk26o"]
+[ext_resource type="Curve" uid="uid://dguf5m65nu1gj" path="res://curves/splat_dampening_curve.tres" id="3_cxa4i"]
+[ext_resource type="Curve" uid="uid://b6v8p0j7iqkyv" path="res://curves/splat_particle_scale_curve.tres" id="3_kk26o"]
+
+[node name="HamParticles" type="Node2D"]
+script = ExtResource("1_me1tr")
+
+[node name="Emitter" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 12
+texture = ExtResource("2_kk26o")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.79
+spread = 180.0
+initial_velocity_min = 345.81
+initial_velocity_max = 476.65
+damping_max = 500.0
+damping_curve = ExtResource("3_cxa4i")
+scale_amount_curve = ExtResource("3_kk26o")
+
+[connection signal="finished" from="Emitter" to="." method="_on_emitter_finished"]

@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://llsq6760uf3y"]
+
+[ext_resource type="Shader" uid="uid://cv0ahdgd22q8b" path="res://hud/hunger_aura/hunger_aura.gdshader" id="1_qlbs2"]
+
+[resource]
+shader = ExtResource("1_qlbs2")
+shader_parameter/_Color = Color(0.6206313, 0, 0.1311549, 1)
+shader_parameter/_Radius = 0.8
+shader_parameter/_Smoot = 0.78
+shader_parameter/_Position = Vector2(0.5, 0.5)
+shader_parameter/opacity = 0.0

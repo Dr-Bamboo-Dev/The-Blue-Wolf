@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dsy1fm2mfjfi3"]
+
+[ext_resource type="Script" uid="uid://b10y4p5kmr327" path="res://debug/touch_controls_debug.gd" id="1_4efyc"]
+[ext_resource type="PackedScene" uid="uid://bah7cmiaqpwwj" path="res://hud/touch_joystick/floating_touch_joystick.tscn" id="3_k206q"]
+
+[node name="TouchControlsDebug" type="Node2D" unique_id=1383965956]
+script = ExtResource("1_4efyc")
+
+[node name="FloatingTouchJoystick" parent="." unique_id=1856481914 instance=ExtResource("3_k206q")]
+
+[node name="JoystickOutput" type="Label" parent="." unique_id=1753472242]
+offset_left = 46.0
+offset_top = 223.0
+offset_right = 561.0
+offset_bottom = 246.0
+text = "Joystick output: "

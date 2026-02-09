@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cc56mst05s361"]
+
+[ext_resource type="Script" uid="uid://cvu0aoie2cvl" path="res://items/gem/gem.gd" id="1_7gg8i"]
+[ext_resource type="Texture2D" uid="uid://chu7f5dpm0awy" path="res://items/gem/gems_2_highlight.png" id="2_7gg8i"]
+[ext_resource type="Shader" uid="uid://dj08qbatb6nva" path="res://items/gem/gem.gdshader" id="2_kkmu8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fvijp"]
+shader = ExtResource("2_kkmu8")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kkmu8"]
+radius = 23.0
+height = 78.0
+
+[node name="Gem" type="Node2D" groups=["gem"]]
+script = ExtResource("1_7gg8i")
+
+[node name="GemSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_fvijp")
+scale = Vector2(2, 2)
+texture = ExtResource("2_7gg8i")
+hframes = 3
+
+[node name="CollectArea" type="Area2D" parent="."]
+collision_layer = 128
+
+[node name="CollectShape" type="CollisionShape2D" parent="CollectArea"]
+position = Vector2(0, 24)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_kkmu8")
+debug_color = Color(0.81055444, 0.41139698, 0.047701932, 0.41960785)
+
+[connection signal="body_entered" from="CollectArea" to="." method="_on_collect_area_body_entered"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf705rhbxlev0"]
+
+[ext_resource type="Texture2D" uid="uid://cig2qp4rkk4yg" path="res://world/props/gem_pedistal.png" id="1_0u46g"]
+[ext_resource type="Script" uid="uid://bgwokh8d0tk0q" path="res://world/props/prop.gd" id="1_w24xd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojbqm"]
+size = Vector2(392, 133)
+
+[node name="GemPedistal" type="Node2D"]
+z_index = -1
+y_sort_enabled = true
+script = ExtResource("1_w24xd")
+metadata/_custom_type_script = "uid://bgwokh8d0tk0q"
+
+[node name="PropSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 11)
+texture = ExtResource("1_0u46g")
+offset = Vector2(0, 0.5)
+
+[node name="VisArea" type="Area2D" parent="."]
+collision_layer = 2048
+collision_mask = 1536
+
+[node name="AreaShape" type="CollisionShape2D" parent="VisArea"]
+z_index = -1
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_ojbqm")
+debug_color = Color(0.949, 0.949, 0.949, 0.125)

@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://qqk7wf6vwbv5"]
+
+[ext_resource type="Script" uid="uid://d1sn6notxcq3w" path="res://autoloads/audio_manager/audio_manager.gd" id="1_j0p2n"]
+[ext_resource type="Curve" uid="uid://dabnoqao6eut1" path="res://autoloads/audio_manager/duck_curve.tres" id="2_3n7gt"]
+[ext_resource type="Curve" uid="uid://bpckqbm0d3sfw" path="res://autoloads/audio_manager/unduck_curve.tres" id="3_omd8j"]
+[ext_resource type="AudioStream" uid="uid://cgbtnp5e0xai1" path="res://audio/sfx/bark/bark_1.wav" id="4_fnjpn"]
+[ext_resource type="AudioStream" uid="uid://bcfnxed0ldjvv" path="res://audio/sfx/boar_grunt.wav" id="5_qel6x"]
+[ext_resource type="AudioStream" uid="uid://titd7vlgay31" path="res://audio/sfx/boar_hit/boar_hit_1.wav" id="6_nt0bf"]
+[ext_resource type="AudioStream" uid="uid://c33qalnrt66c7" path="res://audio/sfx/boar_hit/boar_hit_2.wav" id="7_468v5"]
+[ext_resource type="AudioStream" uid="uid://d1a8fe3xqcyda" path="res://audio/sfx/boar_squeal.wav" id="8_tqgmb"]
+[ext_resource type="AudioStream" uid="uid://d1fsefavddqu7" path="res://audio/sfx/gallop.wav" id="9_5cs3f"]
+[ext_resource type="AudioStream" uid="uid://b0qe7wah2t75s" path="res://audio/sfx/gem_get.wav" id="10_qv50o"]
+[ext_resource type="AudioStream" uid="uid://cfu6f3ehp8tex" path="res://audio/sfx/heavy_hit_thud.wav" id="11_r6xr4"]
+[ext_resource type="AudioStream" uid="uid://btg6chpftoy0" path="res://audio/sfx/dash/dash_1.wav" id="12_gums8"]
+[ext_resource type="AudioStream" uid="uid://bngu67ebipicr" path="res://audio/sfx/dash/dash_2.wav" id="13_kjxkw"]
+[ext_resource type="AudioStream" uid="uid://dqm0hphitfd8g" path="res://audio/sfx/step/step_1.wav" id="14_kydeh"]
+[ext_resource type="AudioStream" uid="uid://b0f1uivpn8ebd" path="res://audio/sfx/step/step_10.wav" id="15_rhk2p"]
+[ext_resource type="AudioStream" uid="uid://dycq5gryxaxgw" path="res://audio/sfx/step/step_11.wav" id="16_44vat"]
+[ext_resource type="AudioStream" uid="uid://brgcsafnumany" path="res://audio/sfx/step/step_12.wav" id="17_rhovy"]
+[ext_resource type="AudioStream" uid="uid://blmwe2it1e8nh" path="res://audio/sfx/step/step_13.wav" id="18_mkhdm"]
+[ext_resource type="AudioStream" uid="uid://ddhf5kuicjpg6" path="res://audio/sfx/step/step_14.wav" id="19_ck0n2"]
+[ext_resource type="AudioStream" uid="uid://dtcmadakciwhu" path="res://audio/sfx/step/step_15.wav" id="20_jhhdr"]
+[ext_resource type="AudioStream" uid="uid://b1e0alaaiglem" path="res://audio/sfx/step/step_16.wav" id="21_euuxh"]
+[ext_resource type="AudioStream" uid="uid://dkqgkk4thkjtk" path="res://audio/sfx/step/step_17.wav" id="22_oo3sg"]
+[ext_resource type="AudioStream" uid="uid://biyqsf5nf4la1" path="res://audio/sfx/step/step_2.wav" id="23_ut082"]
+[ext_resource type="AudioStream" uid="uid://ibjyi21bl6nx" path="res://audio/sfx/step/step_3.wav" id="24_noi24"]
+[ext_resource type="AudioStream" uid="uid://7txho82nr4it" path="res://audio/sfx/step/step_4.wav" id="25_6bloq"]
+[ext_resource type="AudioStream" uid="uid://bl2nnddblw2ef" path="res://audio/sfx/step/step_5.wav" id="26_7se77"]
+[ext_resource type="AudioStream" uid="uid://c4uc3xgyhylvc" path="res://audio/sfx/step/step_6.wav" id="27_3ew4h"]
+[ext_resource type="AudioStream" uid="uid://but577lqb0uo2" path="res://audio/sfx/step/step_7.wav" id="28_lbq64"]
+[ext_resource type="AudioStream" uid="uid://dm7s6grvf2f50" path="res://audio/sfx/step/step_8.wav" id="29_iffhc"]
+[ext_resource type="AudioStream" uid="uid://chre8nuqt4ni8" path="res://audio/sfx/step/step_9.wav" id="30_1httx"]
+[ext_resource type="AudioStream" uid="uid://dapnuoyo8hare" path="res://audio/sfx/wet_chomp.wav" id="31_obwrd"]
+
+[node name="AudioManager" type="Node" unique_id=446529917]
+script = ExtResource("1_j0p2n")
+music_duck_curve = ExtResource("2_3n7gt")
+music_unduck_curve = ExtResource("3_omd8j")
+
+[node name="SFXPreload" type="ResourcePreloader" parent="." unique_id=1001527263]
+resources = [PackedStringArray("bark_1", "boar_grunt", "boar_hit_1", "boar_hit_2", "boar_squeal", "gallop", "gem_get", "heavy_hit_thud", "lunge_1", "lunge_2", "step_1", "step_10", "step_11", "step_12", "step_13", "step_14", "step_15", "step_16", "step_17", "step_2", "step_3", "step_4", "step_5", "step_6", "step_7", "step_8", "step_9", "wet_chomp"), [ExtResource("4_fnjpn"), ExtResource("5_qel6x"), ExtResource("6_nt0bf"), ExtResource("7_468v5"), ExtResource("8_tqgmb"), ExtResource("9_5cs3f"), ExtResource("10_qv50o"), ExtResource("11_r6xr4"), ExtResource("12_gums8"), ExtResource("13_kjxkw"), ExtResource("14_kydeh"), ExtResource("15_rhk2p"), ExtResource("16_44vat"), ExtResource("17_rhovy"), ExtResource("18_mkhdm"), ExtResource("19_ck0n2"), ExtResource("20_jhhdr"), ExtResource("21_euuxh"), ExtResource("22_oo3sg"), ExtResource("23_ut082"), ExtResource("24_noi24"), ExtResource("25_6bloq"), ExtResource("26_7se77"), ExtResource("27_3ew4h"), ExtResource("28_lbq64"), ExtResource("29_iffhc"), ExtResource("30_1httx"), ExtResource("31_obwrd")]]
+
+[node name="DuckHoldTimer" type="Timer" parent="." unique_id=1956575046]

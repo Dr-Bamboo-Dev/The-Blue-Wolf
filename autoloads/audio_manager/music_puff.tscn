@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs0v2sdd0v84h"]
+
+[ext_resource type="Script" uid="uid://ds6cb4hp8c35x" path="res://autoloads/audio_manager/music_puff.gd" id="1_131px"]
+
+[node name="MusicPuff" type="AudioStreamPlayer" groups=["MusicPuff"]]
+bus = &"Music1"
+playback_type = 1
+script = ExtResource("1_131px")

@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://b0j8ydki4vr4e"]
+
+[ext_resource type="Texture2D" uid="uid://cxp3gm5rospwj" path="res://prey/rabbit/rabbit_hop_sheet.png" id="1_4lfv8"]
+
+[resource]
+atlas = ExtResource("1_4lfv8")
+region = Rect2(376, 39, 186, 75)

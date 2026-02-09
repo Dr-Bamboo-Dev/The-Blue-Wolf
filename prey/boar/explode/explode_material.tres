@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://b3idm1go45u7n"]
+
+[ext_resource type="Shader" uid="uid://bod0m445qgcbn" path="res://prey/boar/explode/pixel_explode.gdshader" id="1_d7syj"]
+[ext_resource type="Texture2D" uid="uid://cq3tremboovog" path="res://prey/boar/explode/pixel_expode_noise.tres" id="2_5srr8"]
+[ext_resource type="Texture2D" uid="uid://consaadkuham7" path="res://prey/boar/explode/pixel_expode_noise_normal.tres" id="3_tb8mp"]
+
+[resource]
+shader = ExtResource("1_d7syj")
+shader_parameter/noise_tex_normal = ExtResource("3_tb8mp")
+shader_parameter/noise_tex = ExtResource("2_5srr8")
+shader_parameter/progress = 0.0
+shader_parameter/strength = 1.0

@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c0joylkmsq4ig"]
+
+[ext_resource type="StyleBox" uid="uid://dxf8l37c6j3id" path="res://hud/hunger_bar/hunger_bar_background.tres" id="1_kburd"]
+[ext_resource type="StyleBox" uid="uid://sqtvv7n75n3m" path="res://hud/hunger_bar/hunger_bar_fill.tres" id="2_510up"]
+
+[resource]
+ProgressBar/styles/background = ExtResource("1_kburd")
+ProgressBar/styles/fill = ExtResource("2_510up")

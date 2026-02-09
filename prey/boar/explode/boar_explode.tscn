@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://cg1gn76jb2u1j"]
+
+[ext_resource type="Texture2D" uid="uid://bcvir72r7khv8" path="res://prey/boar/explode/white_pixel.png" id="1_0ku6a"]
+[ext_resource type="Shader" uid="uid://c8acw6fbxfbte" path="res://prey/boar/explode/boar_explode.gdshader" id="1_63m2k"]
+[ext_resource type="Texture2D" uid="uid://bave6dwb22mgq" path="res://items/gem/ham_4.png" id="2_pkykb"]
+[ext_resource type="Texture2D" uid="uid://cyr4gt8vqk3h4" path="res://items/ham/ham_4.png" id="4_aibu4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pkykb"]
+shader = ExtResource("1_63m2k")
+shader_parameter/direction = Vector3(0, 0, 0)
+shader_parameter/spread = 180.0
+shader_parameter/flatness = 0.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/initial_linear_velocity_min = 100.0
+shader_parameter/initial_linear_velocity_max = 100.0
+shader_parameter/directional_velocity_min = 0.0
+shader_parameter/directional_velocity_max = 0.0
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/angular_velocity_max = 0.0
+shader_parameter/orbit_velocity_min = 0.0
+shader_parameter/orbit_velocity_max = 0.0
+shader_parameter/radial_velocity_min = 0.0
+shader_parameter/radial_velocity_max = 0.0
+shader_parameter/linear_accel_min = 0.0
+shader_parameter/linear_accel_max = 0.0
+shader_parameter/radial_accel_min = 0.0
+shader_parameter/radial_accel_max = 0.0
+shader_parameter/tangent_accel_min = 0.0
+shader_parameter/tangent_accel_max = 0.0
+shader_parameter/damping_min = 0.0
+shader_parameter/damping_max = 0.0
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/scale_min = 1.0
+shader_parameter/scale_max = 1.0
+shader_parameter/hue_variation_min = 0.0
+shader_parameter/hue_variation_max = 0.0
+shader_parameter/anim_speed_min = 0.0
+shader_parameter/anim_speed_max = 0.0
+shader_parameter/anim_offset_min = 0.0
+shader_parameter/anim_offset_max = 0.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = Vector3(1, 1, 1)
+shader_parameter/velocity_pivot = Vector3(0, 0, 0)
+shader_parameter/emission_box_extents = Vector3(100, 100, 0)
+shader_parameter/color_value = Color(0, 0, 0, 1)
+shader_parameter/gravity = Vector3(0, 0, 0)
+shader_parameter/sprite = ExtResource("2_pkykb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aibu4"]
+shader = ExtResource("1_63m2k")
+shader_parameter/direction = Vector3(0, -1, 0)
+shader_parameter/spread = 130.549
+shader_parameter/flatness = 0.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/initial_linear_velocity_min = 94.24
+shader_parameter/initial_linear_velocity_max = 94.24
+shader_parameter/directional_velocity_min = 1.0
+shader_parameter/directional_velocity_max = 1.0
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/angular_velocity_max = 0.0
+shader_parameter/orbit_velocity_min = 0.0
+shader_parameter/orbit_velocity_max = 0.0
+shader_parameter/radial_velocity_min = 0.0
+shader_parameter/radial_velocity_max = 0.0
+shader_parameter/linear_accel_min = 0.0
+shader_parameter/linear_accel_max = 0.0
+shader_parameter/radial_accel_min = 0.0
+shader_parameter/radial_accel_max = 0.0
+shader_parameter/tangent_accel_min = 0.0
+shader_parameter/tangent_accel_max = 0.0
+shader_parameter/damping_min = 0.0
+shader_parameter/damping_max = 0.0
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/scale_min = 1.0
+shader_parameter/scale_max = 1.0
+shader_parameter/hue_variation_min = 0.0
+shader_parameter/hue_variation_max = 0.0
+shader_parameter/anim_speed_min = 0.0
+shader_parameter/anim_speed_max = 0.0
+shader_parameter/anim_offset_min = 0.0
+shader_parameter/anim_offset_max = 0.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = Vector3(1, 1, 1)
+shader_parameter/velocity_pivot = Vector3(0, 0, 0)
+shader_parameter/emission_box_extents = Vector3(100, 100, 1)
+shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/gravity = Vector3(0, 98, 0)
+shader_parameter/sprite = ExtResource("4_aibu4")
+
+[node name="BoarExplode" type="Node2D"]
+
+[node name="Emitter" type="CPUParticles2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_pkykb")
+emitting = false
+amount = 64
+texture = ExtResource("1_0ku6a")
+explosiveness = 1.0
+spread = 180.0
+initial_velocity_min = 224.3
+initial_velocity_max = 299.07
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 1024
+texture = ExtResource("1_0ku6a")
+explosiveness = 1.0
+process_material = SubResource("ShaderMaterial_aibu4")

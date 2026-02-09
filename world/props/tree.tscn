@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://fy4dt8j5ejn"]
+
+[ext_resource type="Script" uid="uid://bgwokh8d0tk0q" path="res://world/props/prop.gd" id="1_ukn17"]
+[ext_resource type="Texture2D" uid="uid://bjbhq1l6j8qxr" path="res://world/props/pine_tree_o.png" id="2_ukn17"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukn17"]
+size = Vector2(164, 247)
+
+[node name="Tree" type="Node2D" unique_id=294630301]
+script = ExtResource("1_ukn17")
+metadata/_custom_type_script = "uid://bgwokh8d0tk0q"
+
+[node name="PropSprite" type="Sprite2D" parent="." unique_id=1107324798]
+position = Vector2(0, -112)
+texture = ExtResource("2_ukn17")
+offset = Vector2(0, 0.5)
+
+[node name="VisArea" type="Area2D" parent="." unique_id=110426859]
+collision_layer = 2048
+collision_mask = 1536
+
+[node name="AreaShape" type="CollisionShape2D" parent="VisArea" unique_id=266674080]
+z_index = -1
+position = Vector2(0, -112)
+shape = SubResource("RectangleShape2D_ukn17")
+debug_color = Color(0.949, 0.949, 0.949, 0.125)

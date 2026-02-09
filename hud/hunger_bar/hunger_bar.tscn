@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b4cprnn6u8cbo"]
+
+[ext_resource type="Theme" uid="uid://c0joylkmsq4ig" path="res://hud/hunger_bar/hunger_bar_theme.tres" id="1_hb7tm"]
+[ext_resource type="Script" uid="uid://du4rhystygs0a" path="res://hud/hunger_bar/hunger_bar.gd" id="2_7o3j5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7o3j5"]
+bg_color = Color(1, 0.360784, 0, 0.831373)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="HungerBar" type="ProgressBar" unique_id=178264840]
+offset_right = 454.0
+offset_bottom = 27.0
+mouse_filter = 2
+theme = ExtResource("1_hb7tm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7o3j5")
+step = 0.05
+value = 100.0
+show_percentage = false
+script = ExtResource("2_7o3j5")

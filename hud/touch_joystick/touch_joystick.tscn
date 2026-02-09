@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dd5862y2qvkki"]
+
+[ext_resource type="Script" uid="uid://cyds1bhxve6fs" path="res://hud/touch_joystick/touch_joystick.gd" id="1_jd87a"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_pjwlk"]
+radius = 85.0
+height = 170.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_jd87a"]
+radius = 36.0
+height = 72.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jd87a"]
+radius = 85.0
+
+[node name="TouchJoystick" type="Node2D" unique_id=1671126795]
+script = ExtResource("1_jd87a")
+
+[node name="Base" type="MeshInstance2D" parent="." unique_id=212199930]
+modulate = Color(1, 1, 1, 0.105882354)
+mesh = SubResource("SphereMesh_pjwlk")
+
+[node name="Stick" type="MeshInstance2D" parent="." unique_id=1371494127]
+mesh = SubResource("SphereMesh_jd87a")
+
+[node name="TouchArea" type="Area2D" parent="." unique_id=340133130]
+
+[node name="TouchShape" type="CollisionShape2D" parent="TouchArea" unique_id=1029852250]
+shape = SubResource("CircleShape2D_jd87a")
+
+[node name="HideDelayTimer" type="Timer" parent="." unique_id=641117310]
+one_shot = true

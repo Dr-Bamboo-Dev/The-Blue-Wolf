@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://pi5b8v835xd4"]
+
+[ext_resource type="Material" uid="uid://b3idm1go45u7n" path="res://prey/boar/explode/explode_material.tres" id="1_8u8gv"]
+[ext_resource type="Texture2D" uid="uid://bave6dwb22mgq" path="res://items/gem/ham_4.png" id="2_v5ba1"]
+
+[node name="PixelExplode" type="Node2D"]
+
+[node name="ExplodeMe" type="Sprite2D" parent="."]
+material = ExtResource("1_8u8gv")
+texture = ExtResource("2_v5ba1")
+centered = false

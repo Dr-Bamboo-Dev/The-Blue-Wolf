@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dsdcw8clkotf6"]
+
+[ext_resource type="Material" uid="uid://llsq6760uf3y" path="res://hud/hunger_aura/hunger_aura_material.tres" id="1_ut7yi"]
+[ext_resource type="Script" uid="uid://781dvq6vbxx8" path="res://hud/hunger_aura/hunger_aura.gd" id="1_xv7l5"]
+
+[node name="HungerAura" type="Node2D" unique_id=1427676681]
+script = ExtResource("1_xv7l5")
+
+[node name="AuraRect" type="ColorRect" parent="." unique_id=176286201]
+material = ExtResource("1_ut7yi")
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2

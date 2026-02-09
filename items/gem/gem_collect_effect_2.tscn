@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3ls8f71vqv4f"]
+
+[ext_resource type="Script" uid="uid://kf7nv6ln758v" path="res://items/gem/gem_collect_effect_2.gd" id="1_ylkay"]
+[ext_resource type="Texture2D" uid="uid://bdp6o2oat3tat" path="res://items/gem/gem_collect_particle.png" id="2_q353j"]
+[ext_resource type="Gradient" uid="uid://baoiuk2kgnqi5" path="res://items/gem/gem_collect_color_gradient.tres" id="4_5sejo"]
+
+[sub_resource type="Curve" id="Curve_1ml47"]
+_data = [Vector2(0, 0.269663), 0.0, 0.0, 0, 0, Vector2(0.124352, 1), 0.0, 0.0, 0, 0, Vector2(0.756477, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="GemCollectEffect" type="Node2D"]
+script = ExtResource("1_ylkay")
+
+[node name="GemParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 45
+texture = ExtResource("2_q353j")
+one_shot = true
+speed_scale = 1.6
+explosiveness = 0.77
+local_coords = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 111.29
+initial_velocity_max = 227.14
+radial_accel_min = -100.0
+radial_accel_max = -40.19
+damping_min = 100.0
+damping_max = 100.0
+scale_amount_curve = SubResource("Curve_1ml47")
+color_ramp = ExtResource("4_5sejo")
+
+[connection signal="finished" from="GemParticles" to="." method="_on_gem_particles_finished"]

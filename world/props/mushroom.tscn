@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dms4pxgqkduue"]
+
+[ext_resource type="Script" uid="uid://bgwokh8d0tk0q" path="res://world/props/prop.gd" id="1_cen4w"]
+[ext_resource type="Texture2D" uid="uid://gjwh7q2iuvxi" path="res://world/props/brown_mushroom.png" id="1_nhge4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cen4w"]
+size = Vector2(64, 64)
+
+[node name="Mushroom" type="Node2D" unique_id=1696558166]
+script = ExtResource("1_cen4w")
+metadata/_custom_type_script = "uid://bgwokh8d0tk0q"
+
+[node name="PropSprite" type="Sprite2D" parent="." unique_id=180540110]
+position = Vector2(0, -24)
+texture = ExtResource("1_nhge4")
+
+[node name="VisArea" type="Area2D" parent="." unique_id=323654143]
+collision_layer = 2048
+collision_mask = 1536
+
+[node name="AreaShape" type="CollisionShape2D" parent="VisArea" unique_id=295231989]
+z_index = -1
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_cen4w")
+debug_color = Color(0.949, 0.949, 0.949, 0.125)

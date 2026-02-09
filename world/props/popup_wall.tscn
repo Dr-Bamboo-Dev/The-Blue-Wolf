@@ -1,0 +1,129 @@
+[gd_scene load_steps=10 format=3 uid="uid://813df5vhrpf6"]
+
+[ext_resource type="Script" uid="uid://c0snprmengie" path="res://world/props/popup_wall.gd" id="1_v542p"]
+[ext_resource type="Texture2D" uid="uid://bc08t5ah6pie0" path="res://world/props/popup_walls_sheet.png" id="2_k22ik"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uexus"]
+size = Vector2(64, 64)
+
+[sub_resource type="Animation" id="Animation_v542p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PropSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_07xgn"]
+resource_name = "lower_blue"
+length = 0.87
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PropSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8666667),
+"transitions": PackedFloat32Array(2.143547, 1),
+"update": 0,
+"values": [34, 67]
+}
+
+[sub_resource type="Animation" id="Animation_k22ik"]
+resource_name = "lower_red"
+length = 0.87
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PropSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8666667),
+"transitions": PackedFloat32Array(2.143547, 1),
+"update": 0,
+"values": [0, 33]
+}
+
+[sub_resource type="Animation" id="Animation_2w07e"]
+resource_name = "raise_blue"
+length = 0.86
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PropSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.86),
+"transitions": PackedFloat32Array(-3, 1),
+"update": 0,
+"values": [67, 34]
+}
+
+[sub_resource type="Animation" id="Animation_uexus"]
+resource_name = "raise_red"
+length = 0.86
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PropSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.86),
+"transitions": PackedFloat32Array(-3, 1),
+"update": 0,
+"values": [33, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_07xgn"]
+_data = {
+&"RESET": SubResource("Animation_v542p"),
+&"lower_blue": SubResource("Animation_07xgn"),
+&"lower_red": SubResource("Animation_k22ik"),
+&"raise_blue": SubResource("Animation_2w07e"),
+&"raise_red": SubResource("Animation_uexus")
+}
+
+[node name="PopupWall" type="Node2D"]
+script = ExtResource("1_v542p")
+metadata/_custom_type_script = "uid://bgwokh8d0tk0q"
+
+[node name="PropSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("2_k22ik")
+hframes = 34
+vframes = 2
+
+[node name="VisArea" type="Area2D" parent="."]
+collision_layer = 2048
+collision_mask = 1536
+
+[node name="AreaShape" type="CollisionShape2D" parent="VisArea"]
+z_index = -1
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_uexus")
+debug_color = Color(0.949, 0.949, 0.949, 0.125)
+
+[node name="WallBody" type="StaticBody2D" parent="."]
+z_index = -1
+collision_layer = 4
+
+[node name="BodyShape" type="CollisionPolygon2D" parent="WallBody"]
+polygon = PackedVector2Array(0, 16, 32, 0, 0, -16, -32, 0)
+
+[node name="WallAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_07xgn")
+}
+
+[connection signal="animation_finished" from="WallAnimator" to="." method="_on_wall_animator_animation_finished"]

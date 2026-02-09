@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://to17dja4y2ed"]
+
+[ext_resource type="Script" uid="uid://clf4g7l8q63ht" path="res://hud/touch_button/touch_button.gd" id="1_f8u8a"]
+[ext_resource type="Texture2D" uid="uid://dl32kvhrl5df7" path="res://hud/touch_button/button.png" id="1_jrlcs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vpoqq"]
+radius = 124.84
+
+[node name="TouchButton" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1024.0
+offset_bottom = -464.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f8u8a")
+
+[node name="ActualButton" type="TouchScreenButton" parent="."]
+self_modulate = Color(1, 1, 1, 0.19607843)
+texture_normal = ExtResource("1_jrlcs")
+shape = SubResource("CircleShape2D_vpoqq")
+action = "attack"
+
+[connection signal="pressed" from="ActualButton" to="." method="_on_actual_button_pressed"]
+[connection signal="released" from="ActualButton" to="." method="_on_actual_button_released"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dp3bhuj57ieww"]
+
+[ext_resource type="Script" uid="uid://l03u3jyg2xs5" path="res://prey/boar/boar_damage_particles.gd" id="1_j56yb"]
+[ext_resource type="Texture2D" uid="uid://c61rj8yweijop" path="res://prey/boar/boar_damage_particle_3.png" id="2_j56yb"]
+
+[sub_resource type="Curve" id="Curve_j56yb"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.24870466, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_2gg4e"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.30051816, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_j56yb"]
+offsets = PackedFloat32Array(0.6946108, 1)
+colors = PackedColorArray(1, 1, 1, 0.7882353, 1, 1, 1, 0)
+
+[node name="BoarDamageParticles" type="Node2D"]
+script = ExtResource("1_j56yb")
+
+[node name="Emitter" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 16
+texture = ExtResource("2_j56yb")
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.64
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 308.41
+initial_velocity_max = 467.29
+tangential_accel_max = 50.47
+damping_max = 24.299
+damping_curve = SubResource("Curve_j56yb")
+angle_max = 359.0
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_2gg4e")
+color_ramp = SubResource("Gradient_j56yb")
+
+[connection signal="finished" from="Emitter" to="." method="_on_emitter_finished"]

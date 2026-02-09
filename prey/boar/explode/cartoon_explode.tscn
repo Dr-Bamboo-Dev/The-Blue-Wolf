@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bye6t1wrqamqk"]
+
+[ext_resource type="Shader" uid="uid://cx1fsxs3i8k4x" path="res://prey/boar/explode/cartoon_explode.gdshader" id="1_w0qu5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w0qu5"]
+shader = ExtResource("1_w0qu5")
+shader_parameter/boom_pal1 = Vector3(0.5, 0, 0)
+shader_parameter/boom_pal2 = Vector3(1, 1, 1)
+shader_parameter/boom_pal3 = Vector3(1, 1, 1)
+shader_parameter/boom_pal4 = Vector3(1, 1, 1)
+shader_parameter/smoke_pal1 = Vector3(1, 1, 1)
+shader_parameter/smoke_pal2 = Vector3(1, 0.5, 0.5)
+shader_parameter/smoke_pal3 = Vector3(1, 0.3, 0.3)
+shader_parameter/size = 13.0000001937156
+shader_parameter/disperse = 1.0
+shader_parameter/boom_repeat = 1.0
+shader_parameter/boom_shape = 12.0
+shader_parameter/boom_distortion = 0.5
+shader_parameter/boom_bubbles = 0.5
+shader_parameter/boom_bw = 0.5
+shader_parameter/smoke_repeat = 1.0
+shader_parameter/smoke_shape = 24.0000003576288
+shader_parameter/smoke_distortion = 1.5
+shader_parameter/smoke_bubbles = 0.5
+shader_parameter/smoke_bw = 0.75
+shader_parameter/disp = Vector2(0, 0)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_y0b78"]
+
+[node name="CartoonExplode" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_w0qu5")
+scale = Vector2(1279.9998, 719.99994)
+texture = SubResource("CanvasTexture_y0b78")
+centered = false

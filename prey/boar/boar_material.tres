@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://co408wytrosfe"]
+
+[ext_resource type="Shader" uid="uid://ba3e4hk6scvqf" path="res://prey/boar/boar.gdshader" id="1_5awln"]
+[ext_resource type="Texture2D" uid="uid://cq3tremboovog" path="res://prey/boar/explode/pixel_expode_noise.tres" id="2_1lg5r"]
+[ext_resource type="Texture2D" uid="uid://consaadkuham7" path="res://prey/boar/explode/pixel_expode_noise_normal.tres" id="3_2xgtv"]
+
+[resource]
+shader = ExtResource("1_5awln")
+shader_parameter/active = false
+shader_parameter/flash_intensity = 0.15
+shader_parameter/flash_color = Color(0.997, 0, 0.002, 1)
+shader_parameter/d_active = true
+shader_parameter/d_flash_intensity = 0.0
+shader_parameter/d_flash_color = Color(1, 1, 1, 1)
+shader_parameter/noise_tex_normal = ExtResource("3_2xgtv")
+shader_parameter/noise_tex = ExtResource("2_1lg5r")
+shader_parameter/progress = 0.0
+shader_parameter/strength = 1.0

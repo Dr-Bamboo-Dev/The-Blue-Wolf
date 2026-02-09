@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4gu31tdtu4d1"]
+
+[ext_resource type="Script" uid="uid://c2b46oo36pd3q" path="res://autoloads/audio_manager/sfx_pluff.gd" id="1_bc2sr"]
+
+[node name="SFXPluff" type="AudioStreamPlayer"]
+playback_type = 2
+script = ExtResource("1_bc2sr")

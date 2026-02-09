@@ -1,0 +1,192 @@
+[gd_scene load_steps=17 format=3 uid="uid://das5p3vdtt8tn"]
+
+[ext_resource type="Texture2D" uid="uid://djsw1ah2qt53f" path="res://prey/mushroom_deer/mushroom_deer.png" id="1_oqi07"]
+[ext_resource type="Script" uid="uid://vfe2tramj0ry" path="res://prey/mushroom_deer/mushroom_deer.gd" id="1_oqw66"]
+[ext_resource type="Script" uid="uid://lihxcfyvibei" path="res://prey/mushroom_deer/deer_state_machine.gd" id="3_ddjwt"]
+[ext_resource type="Script" uid="uid://dagfy6afidu1w" path="res://prey/mushroom_deer/deer_idle.gd" id="4_ddjwt"]
+[ext_resource type="Script" uid="uid://bdte2olme4ycg" path="res://prey/mushroom_deer/inactive.gd" id="4_umgbs"]
+[ext_resource type="Script" uid="uid://dl6iesh7ki58p" path="res://prey/mushroom_deer/deer_flee.gd" id="5_ld2h8"]
+[ext_resource type="Script" uid="uid://bl5yg7w07gpea" path="res://prey/mushroom_deer/deer_chomped.gd" id="6_sj1ju"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ld2h8"]
+radius = 163.0
+height = 448.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sj1ju"]
+radius = 24.0
+height = 108.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oqw66"]
+height = 98.0
+
+[sub_resource type="Animation" id="Animation_sj1ju"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_umgbs"]
+resource_name = "chomped"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14, 0.333333, 0.49, 0.64),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 3, 5, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_ddjwt"]
+resource_name = "stand"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ld2h8"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 2, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_umgbs"]
+_data = {
+&"RESET": SubResource("Animation_sj1ju"),
+&"chomped": SubResource("Animation_umgbs"),
+&"stand": SubResource("Animation_ddjwt"),
+&"walk": SubResource("Animation_ld2h8")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umgbs"]
+radius = 63.0
+height = 204.0
+
+[node name="MushroomDeer" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("1_oqw66")
+
+[node name="ScareZone" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="ScareShape" type="CollisionShape2D" parent="ScareZone"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_ld2h8")
+debug_color = Color(0.997672, 0.608645, 0.797309, 0.42)
+
+[node name="OuchZone" type="Area2D" parent="." groups=["Food"]]
+position = Vector2(0, -18)
+collision_layer = 64
+collision_mask = 2
+
+[node name="OuchShape" type="CollisionShape2D" parent="OuchZone"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_sj1ju")
+debug_color = Color(0.990222, 0, 0.281002, 0.42)
+
+[node name="DeerShape" type="CollisionShape2D" parent="."]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_oqw66")
+
+[node name="DeerAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_umgbs")
+}
+autoplay = "walk"
+
+[node name="DeerSprite" type="Sprite2D" parent="."]
+position = Vector2(9, -25)
+texture = ExtResource("1_oqi07")
+hframes = 6
+
+[node name="DeerStateMachine" type="Node" parent="." node_paths=PackedStringArray("deer", "deer_animator", "initial_state")]
+script = ExtResource("3_ddjwt")
+deer = NodePath("..")
+deer_animator = NodePath("../DeerAnimator")
+initial_state = NodePath("DeerInactive")
+metadata/_custom_type_script = "uid://4s2vr1oxi774"
+
+[node name="DeerInactive" type="Node" parent="DeerStateMachine" node_paths=PackedStringArray("mushroom_deer")]
+script = ExtResource("4_umgbs")
+mushroom_deer = NodePath("../..")
+metadata/_custom_type_script = "uid://bdte2olme4ycg"
+
+[node name="DeerIdle" type="Node" parent="DeerStateMachine" node_paths=PackedStringArray("mushroom_deer", "deer_animator")]
+script = ExtResource("4_ddjwt")
+mushroom_deer = NodePath("../..")
+deer_animator = NodePath("../../DeerAnimator")
+metadata/_custom_type_script = "uid://dagfy6afidu1w"
+
+[node name="DeerFlee" type="Node" parent="DeerStateMachine" node_paths=PackedStringArray("mushroom_deer", "deer_animator")]
+script = ExtResource("5_ld2h8")
+mushroom_deer = NodePath("../..")
+deer_animator = NodePath("../../DeerAnimator")
+metadata/_custom_type_script = "uid://dl6iesh7ki58p"
+
+[node name="FleeExtendTime" type="Timer" parent="DeerStateMachine/DeerFlee"]
+wait_time = 1.5
+one_shot = true
+
+[node name="DeerChomped" type="Node" parent="DeerStateMachine" node_paths=PackedStringArray("mushroom_deer", "deer_animator")]
+script = ExtResource("6_sj1ju")
+mushroom_deer = NodePath("../..")
+deer_animator = NodePath("../../DeerAnimator")
+metadata/_custom_type_script = "uid://bl5yg7w07gpea"
+
+[node name="SpaceBubble" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpaceBubble"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_umgbs")
+debug_color = Color(0, 0.650838, 0.0627796, 0.42)
+
+[node name="DeerVisNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-62, -61, 128, 73)
+
+[connection signal="body_entered" from="ScareZone" to="." method="_on_scare_zone_body_entered"]
+[connection signal="body_entered" from="ScareZone" to="DeerStateMachine" method="_on_scare_zone_body_entered"]
+[connection signal="body_exited" from="ScareZone" to="." method="_on_scare_zone_body_exited"]
+[connection signal="body_exited" from="ScareZone" to="DeerStateMachine" method="_on_scare_zone_body_exited"]
+[connection signal="area_entered" from="OuchZone" to="." method="_on_ouch_zone_area_entered"]
+[connection signal="timeout" from="DeerStateMachine/DeerFlee/FleeExtendTime" to="DeerStateMachine/DeerFlee" method="_on_flee_extend_time_timeout"]
+[connection signal="chomped" from="DeerStateMachine/DeerChomped" to="." method="_on_deer_chomped_chomped"]
+[connection signal="screen_entered" from="DeerVisNotifier" to="DeerStateMachine/DeerInactive" method="_on_deer_vis_notifier_screen_entered"]
+[connection signal="screen_exited" from="DeerVisNotifier" to="DeerStateMachine/DeerIdle" method="_on_deer_vis_notifier_screen_exited"]
+[connection signal="screen_exited" from="DeerVisNotifier" to="DeerStateMachine/DeerFlee" method="_on_deer_vis_notifier_screen_exited"]

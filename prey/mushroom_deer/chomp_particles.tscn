@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://bm0ki8wp3ghu0"]
+
+[ext_resource type="Texture2D" uid="uid://36di1xgndrbh" path="res://prey/mushroom_deer/deer_chomp_particle.png" id="1_difa2"]
+[ext_resource type="Script" uid="uid://c3rcxc7v8clcc" path="res://prey/mushroom_deer/chomp_particles.gd" id="1_ps1uu"]
+
+[sub_resource type="Curve" id="Curve_ps1uu"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 200), 0.0, 0.0, 0, 0, Vector2(0.212435, -200), 0.0, 0.0, 0, 0, Vector2(0.99999, -200), 0.0, 0.0, 0, 0, Vector2(1, -200), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_yq12d"]
+_limits = [0.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.2746114, 38.202255), 0.0, 0.0, 0, 0, Vector2(0.4818653, 200), 867.4149, 47.70785, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_y8dt0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.15025908, 1), 0.0, 0.0, 0, 0, Vector2(0.31606218, 0), -7.187159, 0.0, 0, 0]
+point_count = 3
+
+[node name="ChompParticles" type="Node2D"]
+script = ExtResource("1_ps1uu")
+
+[node name="ChompCPU" type="CPUParticles2D" parent="."]
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 30
+texture = ExtResource("1_difa2")
+one_shot = true
+explosiveness = 0.95
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(30.525, 15.965)
+direction = Vector2(0, -1)
+spread = 146.16
+gravity = Vector2(0, 400)
+initial_velocity_min = 467.32
+initial_velocity_max = 1000.0
+linear_accel_curve = SubResource("Curve_ps1uu")
+damping_min = 100.0
+damping_max = 100.0
+damping_curve = SubResource("Curve_yq12d")
+scale_amount_min = 0.8
+scale_amount_max = 0.8
+scale_amount_curve = SubResource("Curve_y8dt0")
+
+[connection signal="finished" from="ChompCPU" to="." method="_on_chomp_cpu_finished"]

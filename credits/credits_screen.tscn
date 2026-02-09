@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://bf7fyxikvy72l"]
+
+[ext_resource type="Script" uid="uid://dn1ntorlh5riq" path="res://credits/credits_screen.gd" id="1_p0pf1"]
+[ext_resource type="FontFile" uid="uid://b25off3ga2g2w" path="res://fonts/Ravenswood Clocktower.otf" id="2_7wcjy"]
+[ext_resource type="AudioStream" uid="uid://clj8jcfxr3wte" path="res://audio/music/credits_theme.ogg" id="3_dotkq"]
+
+[sub_resource type="Theme" id="Theme_dotkq"]
+Label/font_sizes/font_size = 123
+Label/fonts/font = ExtResource("2_7wcjy")
+
+[sub_resource type="Animation" id="Animation_ca34l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Lyrics:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/Lyrics:theme_override_font_sizes/font_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [123]
+}
+
+[sub_resource type="Animation" id="Animation_d7iud"]
+resource_name = "lyrics"
+length = 77.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Lyrics:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.6333333, 3.8333333, 5.4, 6.8333335, 9.333333, 9.833333, 10.6, 11.966666, 14.533334, 17.1, 19.333334, 22.266666, 27.2, 32, 42.4, 43.966667, 45.633335, 47.566666, 49.166668, 52.766666, 55.233334, 57.833332, 60.4, 62.3, 66.53333, 70.7, 74.03333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["", "Deep within his den,", "the hungry blue wolf,", "soundly sleeping", "or perhaps behind you", "lurking", "prowling", "slowly creeping.", "Chasing faster onward", "with no sign of ever slowing,", "tasty prey to catch", "to fill a hunger always growing.", "Coming for you...", "the wolf of blue.", "", "But, he's a hungry pupper", "running free to see", "what he can find.", "He's gonna get some supper", "and take out a few of every kind.", "He needs a little something meaty", "so there's no need to call him greedy.", "But, you can see it there on his face,", "toung lapping with the thrill of the", "impending chase", "'till he tastes his", "ascension.", ""]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/Lyrics:theme_override_font_sizes/font_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 19.333334, 22.266666, 49.166668, 55.233334, 60.4, 62.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [123, 100, 123, 100, 90, 100, 123]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ca34l"]
+_data = {
+&"RESET": SubResource("Animation_ca34l"),
+&"lyrics": SubResource("Animation_d7iud")
+}
+
+[node name="CreditsScreen" type="Node2D" unique_id=1281052874]
+script = ExtResource("1_p0pf1")
+
+[node name="Background" type="ColorRect" parent="." unique_id=2031974912]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Lyrics" type="Label" parent="Background" unique_id=612817752]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -11.5
+offset_right = 56.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_dotkq")
+theme_override_font_sizes/font_size = 123
+metadata/_edit_use_anchors_ = true
+
+[node name="LyricAnimator" type="AnimationPlayer" parent="." unique_id=949500751]
+libraries/ = SubResource("AnimationLibrary_ca34l")
+
+[node name="LyricPlayer" type="AudioStreamPlayer" parent="." unique_id=470637230]
+stream = ExtResource("3_dotkq")

@@ -1,0 +1,36 @@
+func get_file_paths_recursive(dir_path:String, paths:PackedStringArray=[]) -> PackedStringArray:
+    var dir:DirAccess = DirAccess.open(dir_path)
+    #var paths:PackedStringArray = []
+    dir.list_dir_begin()
+
+    var file_name:String = dir.get_next()
+    while file_name != "":
+        if dir.current_is_dir():
+            if file_name != "." and file_name != "..":
+                get_file_paths_recursive(dir_path + "/" + file_name, paths)
+                elif file_name.get_extension().to_upper() == "WAV":
+                    print(file_name)
+                    paths.append(dir_path + "/" + file_name)
+                    file_name = dir.get_next()
+
+                    dir.list_dir_end()
+                    return paths
+
+
+func get_file_paths_recursive(dir_path:String, type:String, paths:PackedStringArray=[]) -> PackedStringArray:
+	var dir:DirAccess = DirAccess.open(dir_path)
+	#var paths:PackedStringArray = []
+	dir.list_dir_begin()
+
+	var file_name:String = dir.get_next()
+	while file_name != "":
+		if dir.current_is_dir():
+			if file_name != "." and file_name != "..":
+				get_file_paths_recursive(dir_path + "/" + file_name, type, paths)
+		elif file_name.get_extension().to_upper() == type.to_upper():
+			print(file_name)
+			paths.append(dir_path + "/" + file_name)
+		file_name = dir.get_next()
+
+	dir.list_dir_end()
+	return paths

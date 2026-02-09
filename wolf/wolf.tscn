@@ -1,0 +1,270 @@
+[gd_scene format=3 uid="uid://clg0fum5f34hr"]
+
+[ext_resource type="Script" uid="uid://cua6wfl2w7xuv" path="res://wolf/wolf.gd" id="1_nckbi"]
+[ext_resource type="Script" uid="uid://cou6usvd3ujax" path="res://wolf/chomp_zone.gd" id="2_iqvrd"]
+[ext_resource type="Script" uid="uid://mv8krkgh3vmn" path="res://wolf/ouch_area.gd" id="3_fhlqq"]
+[ext_resource type="Shader" uid="uid://cfpp1hjc4jily" path="res://prey/boar/damage_flash.gdshader" id="4_p6wds"]
+[ext_resource type="Texture2D" uid="uid://iws6ovo6l27u" path="res://wolf/less_retarded_wolf_5-4.png" id="5_p6wds"]
+[ext_resource type="Script" uid="uid://4s2vr1oxi774" path="res://prey/state_machine.gd" id="6_t2d11"]
+[ext_resource type="Script" uid="uid://cfiixwldbxvct" path="res://wolf/auto.gd" id="7_fd4cv"]
+[ext_resource type="Script" uid="uid://cs8f6a5dlc5a7" path="res://wolf/idle.gd" id="7_lyg6f"]
+[ext_resource type="Script" uid="uid://coqhtwlx54g21" path="res://wolf/walk.gd" id="8_cqbae"]
+[ext_resource type="Script" uid="uid://cyo5b13cusstp" path="res://wolf/attack.gd" id="9_iddcr"]
+[ext_resource type="Script" uid="uid://uq87wtly6cpl" path="res://wolf/dash.gd" id="10_go1d4"]
+[ext_resource type="Script" uid="uid://bq3qpf3x2on4h" path="res://wolf/dead.gd" id="11_8eas0"]
+[ext_resource type="Script" uid="uid://pb6wof041kbf" path="res://wolf/howl.gd" id="12_fd4cv"]
+[ext_resource type="Script" uid="uid://bv40af1elb33p" path="res://wolf/no_effect.gd" id="13_c1ca1"]
+[ext_resource type="Script" uid="uid://neqdffmv2r6o" path="res://wolf/flash.gd" id="14_2qsjt"]
+[ext_resource type="Script" uid="uid://drmtpd2r3olki" path="res://wolf/unmirrored.gd" id="16_2qsjt"]
+[ext_resource type="Script" uid="uid://c5uj1pbasbctt" path="res://wolf/mirrored.gd" id="17_fgx3p"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0567h"]
+radius = 14.0
+height = 112.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fhlqq"]
+radius = 14.0
+height = 112.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iqvrd"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m0pjs"]
+shader = ExtResource("4_p6wds")
+shader_parameter/active = false
+shader_parameter/flash_intensity = 0.77
+shader_parameter/flash_color = Color(0.9999998, 0.15142164, 0.1075904, 1)
+
+[sub_resource type="Animation" id="Animation_p6wds"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WolfSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_fhlqq"]
+resource_name = "attack"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WolfSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 0]
+}
+
+[sub_resource type="Animation" id="Animation_8eas0"]
+resource_name = "dash"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WolfSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_m0pjs"]
+resource_name = "die"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WolfSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_yxihr"]
+resource_name = "howl"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WolfSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.23333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 3, 5]
+}
+
+[sub_resource type="Animation" id="Animation_iqvrd"]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WolfSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_h8kq3"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WolfSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p6wds"]
+_data = {
+&"RESET": SubResource("Animation_p6wds"),
+&"attack": SubResource("Animation_fhlqq"),
+&"dash": SubResource("Animation_8eas0"),
+&"die": SubResource("Animation_m0pjs"),
+&"howl": SubResource("Animation_yxihr"),
+&"idle": SubResource("Animation_iqvrd"),
+&"walk": SubResource("Animation_h8kq3")
+}
+
+[node name="Wolf" type="CharacterBody2D" unique_id=670873306]
+z_index = 1
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("1_nckbi")
+
+[node name="WolfShape" type="CollisionShape2D" parent="." unique_id=1488986271]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_0567h")
+
+[node name="OuchArea" type="Area2D" parent="." unique_id=1671729763]
+position = Vector2(0, 1)
+collision_layer = 8192
+collision_mask = 4096
+script = ExtResource("3_fhlqq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OuchArea" unique_id=1960830675]
+position = Vector2(0, -1)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_fhlqq")
+debug_color = Color(0.97269136, 0, 0.44259292, 0.41960785)
+
+[node name="ChompZone" type="Area2D" parent="." unique_id=2053143237]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 64
+script = ExtResource("2_iqvrd")
+
+[node name="ChompShape" type="CollisionShape2D" parent="ChompZone" unique_id=1355166335]
+position = Vector2(55, -25)
+shape = SubResource("CapsuleShape2D_iqvrd")
+disabled = true
+debug_color = Color(0.865455, 0.000577954, 0.861887, 0.42)
+
+[node name="ChompDuration" type="Timer" parent="ChompZone" unique_id=208663356]
+wait_time = 0.25
+one_shot = true
+
+[node name="WolfSprite" type="Sprite2D" parent="." unique_id=838669725]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_m0pjs")
+position = Vector2(0, -21)
+texture = ExtResource("5_p6wds")
+hframes = 6
+
+[node name="WolfAnimator" type="AnimationPlayer" parent="." unique_id=701629766]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_p6wds")
+autoplay = &"idle"
+
+[node name="BehaviorMachine" type="Node" parent="." unique_id=1633764303 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("6_t2d11")
+initial_state = NodePath("Auto")
+metadata/_custom_type_script = "uid://4s2vr1oxi774"
+
+[node name="Auto" type="Node" parent="BehaviorMachine" unique_id=106203072]
+script = ExtResource("7_fd4cv")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="Idle" type="Node" parent="BehaviorMachine" unique_id=1088827354]
+script = ExtResource("7_lyg6f")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="Walk" type="Node" parent="BehaviorMachine" unique_id=1283394844]
+script = ExtResource("8_cqbae")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="Attack" type="Node" parent="BehaviorMachine" unique_id=635538682]
+script = ExtResource("9_iddcr")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="Dash" type="Node" parent="BehaviorMachine" unique_id=1298224064]
+script = ExtResource("10_go1d4")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="Dead" type="Node" parent="BehaviorMachine" unique_id=1264760787]
+script = ExtResource("11_8eas0")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="Howl" type="Node" parent="BehaviorMachine" unique_id=997490466]
+script = ExtResource("12_fd4cv")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="FlareMachine" type="Node" parent="." unique_id=64448374 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("6_t2d11")
+initial_state = NodePath("NoEffect")
+metadata/_custom_type_script = "uid://4s2vr1oxi774"
+
+[node name="NoEffect" type="Node" parent="FlareMachine" unique_id=2044742812]
+script = ExtResource("13_c1ca1")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="Flash" type="Node" parent="FlareMachine" unique_id=1390634764]
+script = ExtResource("14_2qsjt")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="MirrorMachine" type="Node" parent="." unique_id=1925195667 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("6_t2d11")
+initial_state = NodePath("Unmirrored")
+metadata/_custom_type_script = "uid://4s2vr1oxi774"
+
+[node name="Unmirrored" type="Node" parent="MirrorMachine" unique_id=1476911910]
+script = ExtResource("16_2qsjt")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="Mirrored" type="Node" parent="MirrorMachine" unique_id=1969171950]
+script = ExtResource("17_fgx3p")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"

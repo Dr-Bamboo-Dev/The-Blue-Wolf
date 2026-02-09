@@ -1,0 +1,1892 @@
+[gd_scene format=3 uid="uid://cl0g45rribvnd"]
+
+[ext_resource type="PackedScene" uid="uid://clg0fum5f34hr" path="res://wolf/wolf.tscn" id="1_20v3y"]
+[ext_resource type="Script" uid="uid://mu8he2ilgsmq" path="res://world/main_level/main_level.gd" id="1_fb7y2"]
+[ext_resource type="Script" uid="uid://cmcd03yybko4j" path="res://world/main_level/prop_render_manager.gd" id="2_1dses"]
+[ext_resource type="Script" uid="uid://dvwmn8rfgewyf" path="res://world/main_level/render_zone.gd" id="2_24chv"]
+[ext_resource type="PackedScene" uid="uid://c60lfymrxhbjn" path="res://world/props/cave_entrance.tscn" id="2_b5p1x"]
+[ext_resource type="PackedScene" uid="uid://ijapf43f53be" path="res://cameras/smooth_camera.tscn" id="3_8uafd"]
+[ext_resource type="PackedScene" uid="uid://fy4dt8j5ejn" path="res://world/props/tree.tscn" id="4_04xdj"]
+[ext_resource type="PackedScene" uid="uid://das5p3vdtt8tn" path="res://prey/mushroom_deer/mushroom_deer.tscn" id="4_snqp0"]
+[ext_resource type="Script" uid="uid://8kdnxbpyqv6j" path="res://world/main_level/y_sort.gd" id="5_iyfub"]
+[ext_resource type="PackedScene" uid="uid://0orxfqfkrgsp" path="res://world/props/rock.tscn" id="6_04xdj"]
+[ext_resource type="PackedScene" uid="uid://b4cprnn6u8cbo" path="res://hud/hunger_bar/hunger_bar.tscn" id="7_o6fyn"]
+[ext_resource type="PackedScene" uid="uid://ccvi8iou6trg8" path="res://world/props/fern.tscn" id="8_6tgm8"]
+[ext_resource type="PackedScene" uid="uid://dms4pxgqkduue" path="res://world/props/mushroom.tscn" id="9_gu70t"]
+[ext_resource type="PackedScene" uid="uid://dfsijg414m7lv" path="res://hud/screen_fade/screen_fade.tscn" id="9_kq6dd"]
+[ext_resource type="PackedScene" uid="uid://bf705rhbxlev0" path="res://world/props/gem_pedistal.tscn" id="10_gu70t"]
+[ext_resource type="PackedScene" uid="uid://cc56mst05s361" path="res://items/gem/gem.tscn" id="10_snqp0"]
+[ext_resource type="PackedScene" uid="uid://bg0spmeitkri0" path="res://prey/mole_switch/mole_switch.tscn" id="11_v3edh"]
+[ext_resource type="PackedScene" uid="uid://813df5vhrpf6" path="res://world/props/popup_wall.tscn" id="16_8uafd"]
+[ext_resource type="PackedScene" uid="uid://cnsoqrywcyv2b" path="res://prey/rabbit/rabbit.tscn" id="17_mru47"]
+[ext_resource type="PackedScene" uid="uid://c2dxhnogqep8v" path="res://prey/boar/boar.tscn" id="18_dvon1"]
+[ext_resource type="Texture2D" uid="uid://de2ca57xxyyls" path="res://world/backgrounds/ground_2.png" id="19_mru47"]
+[ext_resource type="PackedScene" uid="uid://bah7cmiaqpwwj" path="res://hud/touch_joystick/floating_touch_joystick.tscn" id="20_mru47"]
+[ext_resource type="PackedScene" uid="uid://dsdcw8clkotf6" path="res://hud/hunger_aura/hunger_aura.tscn" id="25_fkxdu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1dses"]
+size = Vector2(1280, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_24chv"]
+size = Vector2(1920, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mru47"]
+size = Vector2(124, 30)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_mru47"]
+points = PackedVector2Array(0, 250, 500, 114.69, 500, 500, 0, 500)
+
+[node name="MainLevel" type="Node2D" unique_id=729294178]
+script = ExtResource("1_fb7y2")
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=1072625179]
+collision_layer = 4
+collision_mask = 0
+
+[node name="Wall1" type="CollisionPolygon2D" parent="Walls" unique_id=1822478202]
+polygon = PackedVector2Array(-237, 143, 45, 214, 250, 226, 560, 110, 868, 28, 1035, 15, 1205, 27, 1279, 21, 1303, -1, 1285, -84, 1398, -155, 1578, -333, 1688, -379, 1834, -422, 1926, -497, 2052, -525, 2215, -487, 2367, -560, 2529, -617, 2666, -678, 2776, -708, 2956, -687, 3121, -646, 3238, -545, 3314, -360, 3287, -174, 3181, -69, 2989, 39, 2535, 40, 2027, 45, 1909, 101, 1929, 288, 2867, 405, 4171, -21, 3463, -1157, -129, -4)
+
+[node name="Wall2" type="CollisionPolygon2D" parent="Walls" unique_id=1432536549]
+polygon = PackedVector2Array(-500, 345, -336, 448, -149, 490, 7, 470, 159, 561, 296, 675, 440, 747, 614, 809, 765, 855, 935, 869, 1093, 964, 1614, 1413, 1897, 1287, 2032, 1342, 2066, 1357, 2060, 1391, 1935, 1486, 1938, 1603, 2203, 1688, 2349, 1855, 2447, 1970, 2775, 2254, 3043, 2451, 3297, 2522, 3436, 2541, 3620, 2493, 3746, 2429, 3825, 2317, 3850, 2178, 3841, 2030, 3791, 1941, 3576, 1851, 3378, 1811, 3236, 1785, 3172, 1505, 3636, 1242, 3649, 1169, 3511, 1107, 3546, 1082, 3607, 1081, 3692, 1049, 3820, 1155, 3986, 1060, 5117, 1039, 5262, 933, 5326, 827, 5787, 832, 5912, 918, 8175, 961, 15471.792, 759.4541, 15501, 699, 15655, 693, 15678, 751, 23518, 520, 23850, 617, 23921, 750, 24337, 846, 24624, 855, 24817, 1148, 24831, 1655, 24920, 1777, 26065.285, 1739.5496, 26075, 1730, 26104, 1742, 26161, 1926, 26306, 2211, 26753, 2079, 26667, 1775, 26452, 1745, 26233.377, 1670.7697, 26217, 1034, 25842, 1023, 25573, 991, 25354.871, 903.40845, 25060, 785, 24937, 655, 24742, 372, 24483, 307, 23859, 243, 23604, 66, 23411, -24, 21798, 33, 21792, 56, 21674, 69, 21644, 41, 19656.172, 95.31589, 19481, 307, 19483, 422, 19457, 457, 19355, 457, 19322, 342, 19194.898, 110.35922, 17361.377, 170.15504, 17378, 392, 17251, 393, 17140.477, 177.35918, 15649, 226, 15643, 500, 15578, 501, 15426, 238, 12769, 328, 12464, 354, 9986, 453, 6236, 536, 5933, 526, 5394, 636, 5324, 544, 5133, 508, 3976, 495, 3242, 859, 2951, 150, 5553, -250, 27170, -658, 27074, 2558, 3608, 3411, -731, 480)
+
+[node name="Wall3" type="CollisionPolygon2D" parent="Walls" unique_id=1003646607]
+polygon = PackedVector2Array(1407, 357, 1832, 107, 1984, 72, 2207, 111, 2513, 181, 3168, 117, 3184, 633, 3261, 725, 3245, 834, 3250, 932, 3323, 941, 3328, 951, 3324, 967, 3280, 995, 3208, 986, 3157, 943, 3087, 920, 2642, 1153, 2427, 1295, 2359, 1251, 2277, 1249, 2250, 1226, 2271, 1198, 2339, 1183, 2393, 1152, 2458, 1022, 2447, 967, 2422, 933, 2126, 814, 1946, 843, 1699, 679, 1567, 597, 1401, 593, 1387, 579, 1387, 556, 1422, 509)
+
+[node name="BossDoorTrigger" type="Area2D" parent="Walls" unique_id=1230613751]
+collision_layer = 0
+
+[node name="TriggerShape" type="CollisionPolygon2D" parent="Walls/BossDoorTrigger" unique_id=1355403659]
+polygon = PackedVector2Array(25395, 920, 24822, 1217, 24827, 1265, 25430, 937)
+
+[node name="QuietTrigger" type="Area2D" parent="." unique_id=1828925399]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuietTrigger" unique_id=1324852992]
+position = Vector2(-682, -126)
+polygon = PackedVector2Array(23931, 108, 23931, 654, 24012, 653, 24013, 108)
+
+[node name="SmoothCamera" parent="." unique_id=548834316 node_paths=PackedStringArray("player") instance=ExtResource("3_8uafd")]
+position = Vector2(-492, 180)
+player = NodePath("../YSort/Wolf")
+
+[node name="RenderZone" type="Area2D" parent="SmoothCamera" unique_id=772803936]
+z_index = 3
+collision_layer = 512
+collision_mask = 2048
+script = ExtResource("2_24chv")
+
+[node name="ZoneShape" type="CollisionShape2D" parent="SmoothCamera/RenderZone" unique_id=1931766725]
+shape = SubResource("RectangleShape2D_1dses")
+debug_color = Color(0.8223763, 0.3890241, 0.30712253, 0.15294118)
+
+[node name="RunZone" type="Area2D" parent="SmoothCamera" unique_id=1526965162]
+z_index = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SmoothCamera/RunZone" unique_id=987675977]
+shape = SubResource("RectangleShape2D_24chv")
+debug_color = Color(0.75, 0.4275, 0.5027499, 0.13725491)
+
+[node name="FlashGrab" type="RemoteTransform2D" parent="SmoothCamera" unique_id=547986828]
+remote_path = NodePath("../../FlashBackground")
+
+[node name="WolfCam" type="Camera2D" parent="." unique_id=588940448]
+visible = false
+position = Vector2(-492, 179)
+enabled = false
+
+[node name="PropRenderManager" type="Node" parent="." unique_id=542149443]
+script = ExtResource("2_1dses")
+
+[node name="StaticWalls" type="Node2D" parent="." unique_id=1567765195]
+z_index = 1
+
+[node name="CaveEntrance" parent="StaticWalls" unique_id=787299604 instance=ExtResource("2_b5p1x")]
+position = Vector2(-475, 76)
+
+[node name="YSort" type="Node2D" parent="." unique_id=2050340101]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("5_iyfub")
+
+[node name="Wolf" parent="YSort" unique_id=241453688 instance=ExtResource("1_20v3y")]
+z_index = 0
+position = Vector2(-492, 179)
+
+[node name="Deer" type="Node2D" parent="YSort" unique_id=479934370]
+y_sort_enabled = true
+
+[node name="MushroomDeer" parent="YSort/Deer" unique_id=591215939 instance=ExtResource("4_snqp0")]
+position = Vector2(2838, 1334)
+
+[node name="MushroomDeer7" parent="YSort/Deer" unique_id=720225679 instance=ExtResource("4_snqp0")]
+position = Vector2(3421, 2265)
+
+[node name="MushroomDeer6" parent="YSort/Deer" unique_id=2142535639 instance=ExtResource("4_snqp0")]
+position = Vector2(3734, 819)
+
+[node name="MushroomDeer2" parent="YSort/Deer" unique_id=182686535 instance=ExtResource("4_snqp0")]
+position = Vector2(2066, -289)
+
+[node name="MushroomDeer8" parent="YSort/Deer" unique_id=1309732174 instance=ExtResource("4_snqp0")]
+position = Vector2(2285, -336)
+
+[node name="MushroomDeer9" parent="YSort/Deer" unique_id=896740421 instance=ExtResource("4_snqp0")]
+position = Vector2(2243, -178)
+
+[node name="MushroomDeer10" parent="YSort/Deer" unique_id=1625487014 instance=ExtResource("4_snqp0")]
+position = Vector2(2462, -225)
+
+[node name="MushroomDeer11" parent="YSort/Deer" unique_id=1140673130 instance=ExtResource("4_snqp0")]
+position = Vector2(2523, -374)
+
+[node name="MushroomDeer12" parent="YSort/Deer" unique_id=273485649 instance=ExtResource("4_snqp0")]
+position = Vector2(2742, -421)
+
+[node name="MushroomDeer13" parent="YSort/Deer" unique_id=326321656 instance=ExtResource("4_snqp0")]
+position = Vector2(2700, -263)
+
+[node name="MushroomDeer14" parent="YSort/Deer" unique_id=601256669 instance=ExtResource("4_snqp0")]
+position = Vector2(2919, -310)
+
+[node name="MushroomDeer3" parent="YSort/Deer" unique_id=1530995085 instance=ExtResource("4_snqp0")]
+position = Vector2(1288, 167)
+
+[node name="MushroomDeer4" parent="YSort/Deer" unique_id=947649016 instance=ExtResource("4_snqp0")]
+position = Vector2(860, 482)
+
+[node name="MushroomDeer5" parent="YSort/Deer" unique_id=1867317934 instance=ExtResource("4_snqp0")]
+position = Vector2(1513, 886)
+
+[node name="Trees" type="Node2D" parent="YSort" unique_id=2004736980]
+y_sort_enabled = true
+
+[node name="Tree1" parent="YSort/Trees" unique_id=36686438 instance=ExtResource("4_04xdj")]
+position = Vector2(-532, 533)
+
+[node name="Tree2" parent="YSort/Trees" unique_id=990566800 instance=ExtResource("4_04xdj")]
+position = Vector2(-127, 188)
+
+[node name="Tree3" parent="YSort/Trees" unique_id=1856998920 instance=ExtResource("4_04xdj")]
+position = Vector2(105, 716)
+
+[node name="Tree4" parent="YSort/Trees" unique_id=1677921269 instance=ExtResource("4_04xdj")]
+position = Vector2(-28, 643)
+
+[node name="Tree5" parent="YSort/Trees" unique_id=1617844106 instance=ExtResource("4_04xdj")]
+position = Vector2(242, 216)
+
+[node name="Tree6" parent="YSort/Trees" unique_id=2095286273 instance=ExtResource("4_04xdj")]
+position = Vector2(36, 159)
+
+[node name="Tree7" parent="YSort/Trees" unique_id=1510146035 instance=ExtResource("4_04xdj")]
+position = Vector2(-370, 604)
+
+[node name="Tree8" parent="YSort/Trees" unique_id=1153475392 instance=ExtResource("4_04xdj")]
+position = Vector2(371, 157)
+
+[node name="Tree9" parent="YSort/Trees" unique_id=1070070631 instance=ExtResource("4_04xdj")]
+position = Vector2(-196, 664)
+
+[node name="Tree10" parent="YSort/Trees" unique_id=597499224 instance=ExtResource("4_04xdj")]
+position = Vector2(234, 827)
+
+[node name="Tree11" parent="YSort/Trees" unique_id=202396519 instance=ExtResource("4_04xdj")]
+position = Vector2(528, 102)
+
+[node name="Tree12" parent="YSort/Trees" unique_id=25303726 instance=ExtResource("4_04xdj")]
+position = Vector2(677, 20)
+
+[node name="Tree13" parent="YSort/Trees" unique_id=1703522182 instance=ExtResource("4_04xdj")]
+position = Vector2(405, 920)
+
+[node name="Tree14" parent="YSort/Trees" unique_id=901404108 instance=ExtResource("4_04xdj")]
+position = Vector2(864, -30)
+
+[node name="Tree15" parent="YSort/Trees" unique_id=761363548 instance=ExtResource("4_04xdj")]
+position = Vector2(582, 971)
+
+[node name="Tree16" parent="YSort/Trees" unique_id=2044643400 instance=ExtResource("4_04xdj")]
+position = Vector2(991, 9)
+
+[node name="Tree17" parent="YSort/Trees" unique_id=1340544132 instance=ExtResource("4_04xdj")]
+position = Vector2(913, 1039)
+
+[node name="Tree18" parent="YSort/Trees" unique_id=358114191 instance=ExtResource("4_04xdj")]
+position = Vector2(742, 1010)
+
+[node name="Tree19" parent="YSort/Trees" unique_id=328804425 instance=ExtResource("4_04xdj")]
+position = Vector2(1129, -24)
+
+[node name="Tree20" parent="YSort/Trees" unique_id=1829655377 instance=ExtResource("4_04xdj")]
+position = Vector2(1442, 515)
+
+[node name="Tree21" parent="YSort/Trees" unique_id=2030563448 instance=ExtResource("4_04xdj")]
+position = Vector2(1583, 607)
+
+[node name="Tree22" parent="YSort/Trees" unique_id=57404750 instance=ExtResource("4_04xdj")]
+position = Vector2(1596, 451)
+
+[node name="Tree23" parent="YSort/Trees" unique_id=988134463 instance=ExtResource("4_04xdj")]
+position = Vector2(1718, 687)
+
+[node name="Tree24" parent="YSort/Trees" unique_id=1193870418 instance=ExtResource("4_04xdj")]
+position = Vector2(1720, 368)
+
+[node name="Tree25" parent="YSort/Trees" unique_id=848687926 instance=ExtResource("4_04xdj")]
+position = Vector2(1816, 291)
+
+[node name="Tree26" parent="YSort/Trees" unique_id=412276662 instance=ExtResource("4_04xdj")]
+position = Vector2(1968, 248)
+
+[node name="Tree27" parent="YSort/Trees" unique_id=1466614898 instance=ExtResource("4_04xdj")]
+position = Vector2(2133, 211)
+
+[node name="Tree28" parent="YSort/Trees" unique_id=1839070538 instance=ExtResource("4_04xdj")]
+position = Vector2(2287, 263)
+
+[node name="Tree29" parent="YSort/Trees" unique_id=298829697 instance=ExtResource("4_04xdj")]
+position = Vector2(2448, 219)
+
+[node name="Tree80" parent="YSort/Trees" unique_id=26423237 instance=ExtResource("4_04xdj")]
+position = Vector2(2587, 281)
+
+[node name="Tree82" parent="YSort/Trees" unique_id=1630232689 instance=ExtResource("4_04xdj")]
+position = Vector2(2748, 237)
+
+[node name="Tree83" parent="YSort/Trees" unique_id=979176601 instance=ExtResource("4_04xdj")]
+position = Vector2(2889, 283)
+
+[node name="Tree94" parent="YSort/Trees" unique_id=1093798843 instance=ExtResource("4_04xdj")]
+position = Vector2(3050, 239)
+
+[node name="Tree99" parent="YSort/Trees" unique_id=1632996024 instance=ExtResource("4_04xdj")]
+position = Vector2(3192, 165)
+
+[node name="Tree30" parent="YSort/Trees" unique_id=1830821043 instance=ExtResource("4_04xdj")]
+position = Vector2(1252, -78)
+
+[node name="Tree31" parent="YSort/Trees" unique_id=717776146 instance=ExtResource("4_04xdj")]
+position = Vector2(1361, -155)
+
+[node name="Tree32" parent="YSort/Trees" unique_id=1066008199 instance=ExtResource("4_04xdj")]
+position = Vector2(1460, -264)
+
+[node name="Tree33" parent="YSort/Trees" unique_id=1294140554 instance=ExtResource("4_04xdj")]
+position = Vector2(1556, -337)
+
+[node name="Tree34" parent="YSort/Trees" unique_id=375017703 instance=ExtResource("4_04xdj")]
+position = Vector2(1661, -405)
+
+[node name="Tree35" parent="YSort/Trees" unique_id=7941199 instance=ExtResource("4_04xdj")]
+position = Vector2(1793, -419)
+
+[node name="Tree36" parent="YSort/Trees" unique_id=1781649739 instance=ExtResource("4_04xdj")]
+position = Vector2(1898, -503)
+
+[node name="Tree37" parent="YSort/Trees" unique_id=20519881 instance=ExtResource("4_04xdj")]
+position = Vector2(2039, -534)
+
+[node name="Tree38" parent="YSort/Trees" unique_id=845617839 instance=ExtResource("4_04xdj")]
+position = Vector2(2342, -566)
+
+[node name="Tree128" parent="YSort/Trees" unique_id=127113528 instance=ExtResource("4_04xdj")]
+position = Vector2(2486, -618)
+
+[node name="Tree129" parent="YSort/Trees" unique_id=1286527908 instance=ExtResource("4_04xdj")]
+position = Vector2(2622, -680)
+
+[node name="Tree130" parent="YSort/Trees" unique_id=1996540633 instance=ExtResource("4_04xdj")]
+position = Vector2(2773, -713)
+
+[node name="Tree131" parent="YSort/Trees" unique_id=378072067 instance=ExtResource("4_04xdj")]
+position = Vector2(2943, -692)
+
+[node name="Tree132" parent="YSort/Trees" unique_id=1273109826 instance=ExtResource("4_04xdj")]
+position = Vector2(3108, -652)
+
+[node name="Tree133" parent="YSort/Trees" unique_id=1494035210 instance=ExtResource("4_04xdj")]
+position = Vector2(3235, -579)
+
+[node name="Tree134" parent="YSort/Trees" unique_id=1810484281 instance=ExtResource("4_04xdj")]
+position = Vector2(3310, -468)
+
+[node name="Tree135" parent="YSort/Trees" unique_id=1750584664 instance=ExtResource("4_04xdj")]
+position = Vector2(3381, -334)
+
+[node name="Tree136" parent="YSort/Trees" unique_id=20876455 instance=ExtResource("4_04xdj")]
+position = Vector2(3416, -188)
+
+[node name="Tree137" parent="YSort/Trees" unique_id=592892366 instance=ExtResource("4_04xdj")]
+position = Vector2(3385, -44)
+
+[node name="Tree138" parent="YSort/Trees" unique_id=1837413914 instance=ExtResource("4_04xdj")]
+position = Vector2(3302, 72)
+
+[node name="Tree39" parent="YSort/Trees" unique_id=467008200 instance=ExtResource("4_04xdj")]
+position = Vector2(2199, -496)
+
+[node name="Tree40" parent="YSort/Trees" unique_id=2070008078 instance=ExtResource("4_04xdj")]
+position = Vector2(1839, 761)
+
+[node name="Tree41" parent="YSort/Trees" unique_id=2118179325 instance=ExtResource("4_04xdj")]
+position = Vector2(1944, 839)
+
+[node name="Tree42" parent="YSort/Trees" unique_id=2058337189 instance=ExtResource("4_04xdj")]
+position = Vector2(2144, 814)
+
+[node name="Tree43" parent="YSort/Trees" unique_id=1169323052 instance=ExtResource("4_04xdj")]
+position = Vector2(2301, 869)
+
+[node name="Tree44" parent="YSort/Trees" unique_id=448248324 instance=ExtResource("4_04xdj")]
+position = Vector2(2426, 969)
+
+[node name="Tree45" parent="YSort/Trees" unique_id=506245678 instance=ExtResource("4_04xdj")]
+position = Vector2(2503, 1083)
+
+[node name="Tree84" parent="YSort/Trees" unique_id=1085743178 instance=ExtResource("4_04xdj")]
+position = Vector2(2414, 1285)
+
+[node name="Tree85" parent="YSort/Trees" unique_id=880791440 instance=ExtResource("4_04xdj")]
+position = Vector2(2462, 1194)
+
+[node name="Tree86" parent="YSort/Trees" unique_id=1793380871 instance=ExtResource("4_04xdj")]
+position = Vector2(1896, 1453)
+
+[node name="Tree87" parent="YSort/Trees" unique_id=1266699667 instance=ExtResource("4_04xdj")]
+position = Vector2(1752, 1526)
+
+[node name="Tree88" parent="YSort/Trees" unique_id=1755101211 instance=ExtResource("4_04xdj")]
+position = Vector2(1921, 1615)
+
+[node name="Tree46" parent="YSort/Trees" unique_id=2051601091 instance=ExtResource("4_04xdj")]
+position = Vector2(2624, 1144)
+
+[node name="Tree89" parent="YSort/Trees" unique_id=1526792215 instance=ExtResource("4_04xdj")]
+position = Vector2(2733, 1074)
+
+[node name="Tree90" parent="YSort/Trees" unique_id=1781505939 instance=ExtResource("4_04xdj")]
+position = Vector2(2856, 1021)
+
+[node name="Tree91" parent="YSort/Trees" unique_id=1567296493 instance=ExtResource("4_04xdj")]
+position = Vector2(2969, 974)
+
+[node name="Tree92" parent="YSort/Trees" unique_id=1469121328 instance=ExtResource("4_04xdj")]
+position = Vector2(3084, 912)
+
+[node name="Tree93" parent="YSort/Trees" unique_id=903733167 instance=ExtResource("4_04xdj")]
+position = Vector2(3168, 863)
+
+[node name="Tree108" parent="YSort/Trees" unique_id=704762505 instance=ExtResource("4_04xdj")]
+position = Vector2(3311, 804)
+
+[node name="Tree109" parent="YSort/Trees" unique_id=2066404795 instance=ExtResource("4_04xdj")]
+position = Vector2(3424, 702)
+
+[node name="Tree110" parent="YSort/Trees" unique_id=369857220 instance=ExtResource("4_04xdj")]
+position = Vector2(3583, 657)
+
+[node name="Tree111" parent="YSort/Trees" unique_id=2058338484 instance=ExtResource("4_04xdj")]
+position = Vector2(3730, 597)
+
+[node name="Tree112" parent="YSort/Trees" unique_id=538275220 instance=ExtResource("4_04xdj")]
+position = Vector2(3882, 524)
+
+[node name="Tree113" parent="YSort/Trees" unique_id=1696914643 instance=ExtResource("4_04xdj")]
+position = Vector2(4041, 483)
+
+[node name="Tree114" parent="YSort/Trees" unique_id=683402490 instance=ExtResource("4_04xdj")]
+position = Vector2(4194, 440)
+
+[node name="Tree115" parent="YSort/Trees" unique_id=349390604 instance=ExtResource("4_04xdj")]
+position = Vector2(4365, 478)
+
+[node name="Tree116" parent="YSort/Trees" unique_id=2131203877 instance=ExtResource("4_04xdj")]
+position = Vector2(4526, 447)
+
+[node name="Tree117" parent="YSort/Trees" unique_id=1710053080 instance=ExtResource("4_04xdj")]
+position = Vector2(4686, 501)
+
+[node name="Tree118" parent="YSort/Trees" unique_id=1524326566 instance=ExtResource("4_04xdj")]
+position = Vector2(4844, 457)
+
+[node name="Tree119" parent="YSort/Trees" unique_id=1375555517 instance=ExtResource("4_04xdj")]
+position = Vector2(5002, 501)
+
+[node name="Tree120" parent="YSort/Trees" unique_id=737094481 instance=ExtResource("4_04xdj")]
+position = Vector2(5144, 463)
+
+[node name="Tree121" parent="YSort/Trees" unique_id=1594723046 instance=ExtResource("4_04xdj")]
+position = Vector2(5285, 541)
+
+[node name="Tree122" parent="YSort/Trees" unique_id=1813763509 instance=ExtResource("4_04xdj")]
+position = Vector2(5408, 626)
+
+[node name="Tree123" parent="YSort/Trees" unique_id=981883131 instance=ExtResource("4_04xdj")]
+position = Vector2(5572, 590)
+
+[node name="Tree139" parent="YSort/Trees" unique_id=342501429 instance=ExtResource("4_04xdj")]
+position = Vector2(5737, 558)
+
+[node name="Tree147" parent="YSort/Trees" unique_id=743384803 instance=ExtResource("4_04xdj")]
+position = Vector2(5908, 511)
+
+[node name="Tree148" parent="YSort/Trees" unique_id=1720683416 instance=ExtResource("4_04xdj")]
+position = Vector2(6063, 553)
+
+[node name="Tree149" parent="YSort/Trees" unique_id=677500117 instance=ExtResource("4_04xdj")]
+position = Vector2(6210, 477)
+
+[node name="Tree150" parent="YSort/Trees" unique_id=155342743 instance=ExtResource("4_04xdj")]
+position = Vector2(6361, 527)
+
+[node name="Tree151" parent="YSort/Trees" unique_id=710067361 instance=ExtResource("4_04xdj")]
+position = Vector2(6506, 443)
+
+[node name="Tree152" parent="YSort/Trees" unique_id=2040296218 instance=ExtResource("4_04xdj")]
+position = Vector2(6633, 522)
+
+[node name="Tree153" parent="YSort/Trees" unique_id=2059166573 instance=ExtResource("4_04xdj")]
+position = Vector2(6789, 463)
+
+[node name="Tree125" parent="YSort/Trees" unique_id=58021293 instance=ExtResource("4_04xdj")]
+position = Vector2(5519, 1073)
+
+[node name="Tree140" parent="YSort/Trees" unique_id=1454498393 instance=ExtResource("4_04xdj")]
+position = Vector2(5700, 1034)
+
+[node name="Tree141" parent="YSort/Trees" unique_id=1220118940 instance=ExtResource("4_04xdj")]
+position = Vector2(5852, 1124)
+
+[node name="Tree142" parent="YSort/Trees" unique_id=40187542 instance=ExtResource("4_04xdj")]
+position = Vector2(6029, 1181)
+
+[node name="Tree143" parent="YSort/Trees" unique_id=2048840737 instance=ExtResource("4_04xdj")]
+position = Vector2(6219, 1128)
+
+[node name="Tree144" parent="YSort/Trees" unique_id=1279057210 instance=ExtResource("4_04xdj")]
+position = Vector2(6388, 1192)
+
+[node name="Tree145" parent="YSort/Trees" unique_id=134174250 instance=ExtResource("4_04xdj")]
+position = Vector2(6547, 1115)
+
+[node name="Tree146" parent="YSort/Trees" unique_id=1107076277 instance=ExtResource("4_04xdj")]
+position = Vector2(6703, 1192)
+
+[node name="Tree154" parent="YSort/Trees" unique_id=35705909 instance=ExtResource("4_04xdj")]
+position = Vector2(6840, 1103)
+
+[node name="Tree155" parent="YSort/Trees" unique_id=546981857 instance=ExtResource("4_04xdj")]
+position = Vector2(7009, 1167)
+
+[node name="Tree156" parent="YSort/Trees" unique_id=693567410 instance=ExtResource("4_04xdj")]
+position = Vector2(7174, 1112)
+
+[node name="Tree157" parent="YSort/Trees" unique_id=189176228 instance=ExtResource("4_04xdj")]
+position = Vector2(7330, 1189)
+
+[node name="Tree158" parent="YSort/Trees" unique_id=1619059970 instance=ExtResource("4_04xdj")]
+position = Vector2(7474, 1119)
+
+[node name="Tree159" parent="YSort/Trees" unique_id=254443455 instance=ExtResource("4_04xdj")]
+position = Vector2(7643, 1205)
+
+[node name="Tree160" parent="YSort/Trees" unique_id=1093395825 instance=ExtResource("4_04xdj")]
+position = Vector2(7802, 1128)
+
+[node name="Tree161" parent="YSort/Trees" unique_id=1375927823 instance=ExtResource("4_04xdj")]
+position = Vector2(7958, 1205)
+
+[node name="Tree162" parent="YSort/Trees" unique_id=2016792463 instance=ExtResource("4_04xdj")]
+position = Vector2(8095, 1149)
+
+[node name="Tree163" parent="YSort/Trees" unique_id=636249426 instance=ExtResource("4_04xdj")]
+position = Vector2(8247, 1246)
+
+[node name="Tree164" parent="YSort/Trees" unique_id=354296594 instance=ExtResource("4_04xdj")]
+position = Vector2(8406, 1169)
+
+[node name="Tree165" parent="YSort/Trees" unique_id=230200088 instance=ExtResource("4_04xdj")]
+position = Vector2(8562, 1246)
+
+[node name="Tree166" parent="YSort/Trees" unique_id=498174670 instance=ExtResource("4_04xdj")]
+position = Vector2(6918, 542)
+
+[node name="Tree167" parent="YSort/Trees" unique_id=1955150421 instance=ExtResource("4_04xdj")]
+position = Vector2(7077, 465)
+
+[node name="Tree168" parent="YSort/Trees" unique_id=513404581 instance=ExtResource("4_04xdj")]
+position = Vector2(7222, 520)
+
+[node name="Tree169" parent="YSort/Trees" unique_id=1713028267 instance=ExtResource("4_04xdj")]
+position = Vector2(7366, 450)
+
+[node name="Tree170" parent="YSort/Trees" unique_id=1662881700 instance=ExtResource("4_04xdj")]
+position = Vector2(7535, 514)
+
+[node name="Tree171" parent="YSort/Trees" unique_id=1380197448 instance=ExtResource("4_04xdj")]
+position = Vector2(7694, 420)
+
+[node name="Tree172" parent="YSort/Trees" unique_id=1741704328 instance=ExtResource("4_04xdj")]
+position = Vector2(7850, 497)
+
+[node name="Tree173" parent="YSort/Trees" unique_id=508991114 instance=ExtResource("4_04xdj")]
+position = Vector2(7987, 408)
+
+[node name="Tree174" parent="YSort/Trees" unique_id=1625370603 instance=ExtResource("4_04xdj")]
+position = Vector2(8156, 450)
+
+[node name="Tree175" parent="YSort/Trees" unique_id=1812471512 instance=ExtResource("4_04xdj")]
+position = Vector2(8315, 351)
+
+[node name="Tree176" parent="YSort/Trees" unique_id=1478116119 instance=ExtResource("4_04xdj")]
+position = Vector2(8471, 428)
+
+[node name="Tree177" parent="YSort/Trees" unique_id=1092971872 instance=ExtResource("4_04xdj")]
+position = Vector2(8623, 350)
+
+[node name="Tree178" parent="YSort/Trees" unique_id=363790348 instance=ExtResource("4_04xdj")]
+position = Vector2(8750, 429)
+
+[node name="Tree179" parent="YSort/Trees" unique_id=853427488 instance=ExtResource("4_04xdj")]
+position = Vector2(8906, 370)
+
+[node name="Tree180" parent="YSort/Trees" unique_id=1434221423 instance=ExtResource("4_04xdj")]
+position = Vector2(8689, 1190)
+
+[node name="Tree181" parent="YSort/Trees" unique_id=1957179286 instance=ExtResource("4_04xdj")]
+position = Vector2(8845, 1267)
+
+[node name="Tree182" parent="YSort/Trees" unique_id=2060467212 instance=ExtResource("4_04xdj")]
+position = Vector2(8982, 1178)
+
+[node name="Tree183" parent="YSort/Trees" unique_id=394385877 instance=ExtResource("4_04xdj")]
+position = Vector2(9151, 1242)
+
+[node name="Tree184" parent="YSort/Trees" unique_id=700888658 instance=ExtResource("4_04xdj")]
+position = Vector2(9310, 1165)
+
+[node name="Tree185" parent="YSort/Trees" unique_id=741110008 instance=ExtResource("4_04xdj")]
+position = Vector2(9466, 1242)
+
+[node name="Tree186" parent="YSort/Trees" unique_id=1334965508 instance=ExtResource("4_04xdj")]
+position = Vector2(9610, 1172)
+
+[node name="Tree187" parent="YSort/Trees" unique_id=1970339100 instance=ExtResource("4_04xdj")]
+position = Vector2(9779, 1236)
+
+[node name="Tree188" parent="YSort/Trees" unique_id=2026287789 instance=ExtResource("4_04xdj")]
+position = Vector2(9938, 1159)
+
+[node name="Tree189" parent="YSort/Trees" unique_id=501211066 instance=ExtResource("4_04xdj")]
+position = Vector2(10094, 1236)
+
+[node name="Tree190" parent="YSort/Trees" unique_id=780707851 instance=ExtResource("4_04xdj")]
+position = Vector2(10231, 1147)
+
+[node name="Tree191" parent="YSort/Trees" unique_id=381882352 instance=ExtResource("4_04xdj")]
+position = Vector2(10400, 1211)
+
+[node name="Tree192" parent="YSort/Trees" unique_id=1001016665 instance=ExtResource("4_04xdj")]
+position = Vector2(10559, 1134)
+
+[node name="Tree193" parent="YSort/Trees" unique_id=1635169861 instance=ExtResource("4_04xdj")]
+position = Vector2(10715, 1211)
+
+[node name="Tree230" parent="YSort/Trees" unique_id=1795936841 instance=ExtResource("4_04xdj")]
+position = Vector2(10857, 1118)
+
+[node name="Tree231" parent="YSort/Trees" unique_id=1157927922 instance=ExtResource("4_04xdj")]
+position = Vector2(11013, 1195)
+
+[node name="Tree232" parent="YSort/Trees" unique_id=376136157 instance=ExtResource("4_04xdj")]
+position = Vector2(11157, 1125)
+
+[node name="Tree233" parent="YSort/Trees" unique_id=1596581716 instance=ExtResource("4_04xdj")]
+position = Vector2(11326, 1189)
+
+[node name="Tree234" parent="YSort/Trees" unique_id=680413548 instance=ExtResource("4_04xdj")]
+position = Vector2(11485, 1112)
+
+[node name="Tree235" parent="YSort/Trees" unique_id=954181691 instance=ExtResource("4_04xdj")]
+position = Vector2(11641, 1189)
+
+[node name="Tree236" parent="YSort/Trees" unique_id=1573879061 instance=ExtResource("4_04xdj")]
+position = Vector2(11778, 1100)
+
+[node name="Tree237" parent="YSort/Trees" unique_id=20824518 instance=ExtResource("4_04xdj")]
+position = Vector2(11947, 1164)
+
+[node name="Tree238" parent="YSort/Trees" unique_id=1647366656 instance=ExtResource("4_04xdj")]
+position = Vector2(12106, 1087)
+
+[node name="Tree239" parent="YSort/Trees" unique_id=465562274 instance=ExtResource("4_04xdj")]
+position = Vector2(12262, 1164)
+
+[node name="Tree268" parent="YSort/Trees" unique_id=971374550 instance=ExtResource("4_04xdj")]
+position = Vector2(12387, 1076)
+
+[node name="Tree269" parent="YSort/Trees" unique_id=1135489549 instance=ExtResource("4_04xdj")]
+position = Vector2(12543, 1153)
+
+[node name="Tree270" parent="YSort/Trees" unique_id=511517593 instance=ExtResource("4_04xdj")]
+position = Vector2(12680, 1064)
+
+[node name="Tree271" parent="YSort/Trees" unique_id=1800430207 instance=ExtResource("4_04xdj")]
+position = Vector2(12849, 1128)
+
+[node name="Tree272" parent="YSort/Trees" unique_id=895703874 instance=ExtResource("4_04xdj")]
+position = Vector2(13008, 1051)
+
+[node name="Tree273" parent="YSort/Trees" unique_id=2111129912 instance=ExtResource("4_04xdj")]
+position = Vector2(13164, 1128)
+
+[node name="Tree274" parent="YSort/Trees" unique_id=572903882 instance=ExtResource("4_04xdj")]
+position = Vector2(13306, 1035)
+
+[node name="Tree275" parent="YSort/Trees" unique_id=1969843521 instance=ExtResource("4_04xdj")]
+position = Vector2(13462, 1112)
+
+[node name="Tree276" parent="YSort/Trees" unique_id=1374882971 instance=ExtResource("4_04xdj")]
+position = Vector2(13606, 1042)
+
+[node name="Tree277" parent="YSort/Trees" unique_id=688087333 instance=ExtResource("4_04xdj")]
+position = Vector2(13775, 1106)
+
+[node name="Tree278" parent="YSort/Trees" unique_id=277278724 instance=ExtResource("4_04xdj")]
+position = Vector2(13934, 1029)
+
+[node name="Tree279" parent="YSort/Trees" unique_id=2030305378 instance=ExtResource("4_04xdj")]
+position = Vector2(14090, 1106)
+
+[node name="Tree280" parent="YSort/Trees" unique_id=1669002619 instance=ExtResource("4_04xdj")]
+position = Vector2(14227, 1017)
+
+[node name="Tree281" parent="YSort/Trees" unique_id=136684954 instance=ExtResource("4_04xdj")]
+position = Vector2(14396, 1081)
+
+[node name="Tree282" parent="YSort/Trees" unique_id=593242028 instance=ExtResource("4_04xdj")]
+position = Vector2(14555, 1004)
+
+[node name="Tree283" parent="YSort/Trees" unique_id=360352055 instance=ExtResource("4_04xdj")]
+position = Vector2(14711, 1081)
+
+[node name="Tree194" parent="YSort/Trees" unique_id=1279900015 instance=ExtResource("4_04xdj")]
+position = Vector2(9035, 449)
+
+[node name="Tree195" parent="YSort/Trees" unique_id=878327623 instance=ExtResource("4_04xdj")]
+position = Vector2(9194, 372)
+
+[node name="Tree196" parent="YSort/Trees" unique_id=629703654 instance=ExtResource("4_04xdj")]
+position = Vector2(9350, 449)
+
+[node name="Tree197" parent="YSort/Trees" unique_id=30247126 instance=ExtResource("4_04xdj")]
+position = Vector2(9494, 379)
+
+[node name="Tree198" parent="YSort/Trees" unique_id=25907661 instance=ExtResource("4_04xdj")]
+position = Vector2(9663, 443)
+
+[node name="Tree199" parent="YSort/Trees" unique_id=690546906 instance=ExtResource("4_04xdj")]
+position = Vector2(9822, 366)
+
+[node name="Tree200" parent="YSort/Trees" unique_id=893921953 instance=ExtResource("4_04xdj")]
+position = Vector2(9978, 443)
+
+[node name="Tree201" parent="YSort/Trees" unique_id=814487239 instance=ExtResource("4_04xdj")]
+position = Vector2(10115, 354)
+
+[node name="Tree202" parent="YSort/Trees" unique_id=2126539785 instance=ExtResource("4_04xdj")]
+position = Vector2(10284, 418)
+
+[node name="Tree203" parent="YSort/Trees" unique_id=1898187112 instance=ExtResource("4_04xdj")]
+position = Vector2(10443, 341)
+
+[node name="Tree204" parent="YSort/Trees" unique_id=434886436 instance=ExtResource("4_04xdj")]
+position = Vector2(10599, 418)
+
+[node name="Tree214" parent="YSort/Trees" unique_id=250557391 instance=ExtResource("4_04xdj")]
+position = Vector2(10743, 329)
+
+[node name="Tree215" parent="YSort/Trees" unique_id=1562044429 instance=ExtResource("4_04xdj")]
+position = Vector2(10912, 393)
+
+[node name="Tree216" parent="YSort/Trees" unique_id=1037963478 instance=ExtResource("4_04xdj")]
+position = Vector2(11071, 316)
+
+[node name="Tree217" parent="YSort/Trees" unique_id=1044459847 instance=ExtResource("4_04xdj")]
+position = Vector2(11227, 393)
+
+[node name="Tree218" parent="YSort/Trees" unique_id=1750069805 instance=ExtResource("4_04xdj")]
+position = Vector2(11364, 304)
+
+[node name="Tree219" parent="YSort/Trees" unique_id=2067354299 instance=ExtResource("4_04xdj")]
+position = Vector2(11533, 368)
+
+[node name="Tree220" parent="YSort/Trees" unique_id=188207758 instance=ExtResource("4_04xdj")]
+position = Vector2(11692, 291)
+
+[node name="Tree221" parent="YSort/Trees" unique_id=1316143960 instance=ExtResource("4_04xdj")]
+position = Vector2(11848, 368)
+
+[node name="Tree240" parent="YSort/Trees" unique_id=206111797 instance=ExtResource("4_04xdj")]
+position = Vector2(12006, 282)
+
+[node name="Tree241" parent="YSort/Trees" unique_id=44124974 instance=ExtResource("4_04xdj")]
+position = Vector2(12162, 359)
+
+[node name="Tree244" parent="YSort/Trees" unique_id=1881040850 instance=ExtResource("4_04xdj")]
+position = Vector2(12319, 265)
+
+[node name="Tree245" parent="YSort/Trees" unique_id=1011435457 instance=ExtResource("4_04xdj")]
+position = Vector2(12475, 342)
+
+[node name="Tree248" parent="YSort/Trees" unique_id=1787117148 instance=ExtResource("4_04xdj")]
+position = Vector2(12619, 253)
+
+[node name="Tree249" parent="YSort/Trees" unique_id=1032882977 instance=ExtResource("4_04xdj")]
+position = Vector2(12788, 317)
+
+[node name="Tree250" parent="YSort/Trees" unique_id=248775442 instance=ExtResource("4_04xdj")]
+position = Vector2(12947, 240)
+
+[node name="Tree251" parent="YSort/Trees" unique_id=886984715 instance=ExtResource("4_04xdj")]
+position = Vector2(13103, 317)
+
+[node name="Tree252" parent="YSort/Trees" unique_id=155023346 instance=ExtResource("4_04xdj")]
+position = Vector2(13240, 228)
+
+[node name="Tree253" parent="YSort/Trees" unique_id=66390801 instance=ExtResource("4_04xdj")]
+position = Vector2(13409, 292)
+
+[node name="Tree254" parent="YSort/Trees" unique_id=594380956 instance=ExtResource("4_04xdj")]
+position = Vector2(13568, 215)
+
+[node name="Tree255" parent="YSort/Trees" unique_id=1149708593 instance=ExtResource("4_04xdj")]
+position = Vector2(13724, 292)
+
+[node name="Tree264" parent="YSort/Trees" unique_id=1207163946 instance=ExtResource("4_04xdj")]
+position = Vector2(13882, 206)
+
+[node name="Tree265" parent="YSort/Trees" unique_id=1182940994 instance=ExtResource("4_04xdj")]
+position = Vector2(14038, 283)
+
+[node name="Tree284" parent="YSort/Trees" unique_id=1351498486 instance=ExtResource("4_04xdj")]
+position = Vector2(14194, 195)
+
+[node name="Tree285" parent="YSort/Trees" unique_id=1950833379 instance=ExtResource("4_04xdj")]
+position = Vector2(14350, 272)
+
+[node name="Tree288" parent="YSort/Trees" unique_id=236237258 instance=ExtResource("4_04xdj")]
+position = Vector2(14508, 186)
+
+[node name="Tree289" parent="YSort/Trees" unique_id=85705122 instance=ExtResource("4_04xdj")]
+position = Vector2(14664, 263)
+
+[node name="Tree293" parent="YSort/Trees" unique_id=2009409303 instance=ExtResource("4_04xdj")]
+position = Vector2(14852, 1004)
+
+[node name="Tree294" parent="YSort/Trees" unique_id=390670845 instance=ExtResource("4_04xdj")]
+position = Vector2(15021, 1068)
+
+[node name="Tree295" parent="YSort/Trees" unique_id=999618840 instance=ExtResource("4_04xdj")]
+position = Vector2(15180, 991)
+
+[node name="Tree296" parent="YSort/Trees" unique_id=228747108 instance=ExtResource("4_04xdj")]
+position = Vector2(15336, 1068)
+
+[node name="Tree297" parent="YSort/Trees" unique_id=1564756767 instance=ExtResource("4_04xdj")]
+position = Vector2(15461, 980)
+
+[node name="Tree474" parent="YSort/Trees" unique_id=263162232 instance=ExtResource("4_04xdj")]
+position = Vector2(15532, 360)
+
+[node name="Tree475" parent="YSort/Trees" unique_id=585873855 instance=ExtResource("4_04xdj")]
+position = Vector2(15603, 495)
+
+[node name="Tree476" parent="YSort/Trees" unique_id=1855510053 instance=ExtResource("4_04xdj")]
+position = Vector2(15574, 864)
+
+[node name="Tree298" parent="YSort/Trees" unique_id=61156316 instance=ExtResource("4_04xdj")]
+position = Vector2(15617, 1057)
+
+[node name="Tree299" parent="YSort/Trees" unique_id=1880157399 instance=ExtResource("4_04xdj")]
+position = Vector2(15754, 968)
+
+[node name="Tree300" parent="YSort/Trees" unique_id=1499639123 instance=ExtResource("4_04xdj")]
+position = Vector2(15923, 1032)
+
+[node name="Tree301" parent="YSort/Trees" unique_id=1227098426 instance=ExtResource("4_04xdj")]
+position = Vector2(16082, 955)
+
+[node name="Tree302" parent="YSort/Trees" unique_id=823713964 instance=ExtResource("4_04xdj")]
+position = Vector2(16238, 1032)
+
+[node name="Tree303" parent="YSort/Trees" unique_id=990285711 instance=ExtResource("4_04xdj")]
+position = Vector2(16380, 939)
+
+[node name="Tree304" parent="YSort/Trees" unique_id=1679699831 instance=ExtResource("4_04xdj")]
+position = Vector2(16536, 1016)
+
+[node name="Tree305" parent="YSort/Trees" unique_id=1577344709 instance=ExtResource("4_04xdj")]
+position = Vector2(16680, 946)
+
+[node name="Tree306" parent="YSort/Trees" unique_id=1511492114 instance=ExtResource("4_04xdj")]
+position = Vector2(16849, 1010)
+
+[node name="Tree307" parent="YSort/Trees" unique_id=1095703663 instance=ExtResource("4_04xdj")]
+position = Vector2(17008, 933)
+
+[node name="Tree308" parent="YSort/Trees" unique_id=95844282 instance=ExtResource("4_04xdj")]
+position = Vector2(17164, 1010)
+
+[node name="Tree309" parent="YSort/Trees" unique_id=1064455533 instance=ExtResource("4_04xdj")]
+position = Vector2(17301, 921)
+
+[node name="Tree310" parent="YSort/Trees" unique_id=775744642 instance=ExtResource("4_04xdj")]
+position = Vector2(17470, 985)
+
+[node name="Tree311" parent="YSort/Trees" unique_id=1139871453 instance=ExtResource("4_04xdj")]
+position = Vector2(17629, 908)
+
+[node name="Tree312" parent="YSort/Trees" unique_id=574093931 instance=ExtResource("4_04xdj")]
+position = Vector2(17785, 985)
+
+[node name="Tree313" parent="YSort/Trees" unique_id=421837834 instance=ExtResource("4_04xdj")]
+position = Vector2(14833, 182)
+
+[node name="Tree314" parent="YSort/Trees" unique_id=1396852368 instance=ExtResource("4_04xdj")]
+position = Vector2(14989, 259)
+
+[node name="Tree317" parent="YSort/Trees" unique_id=2091992650 instance=ExtResource("4_04xdj")]
+position = Vector2(15147, 173)
+
+[node name="Tree318" parent="YSort/Trees" unique_id=1297716074 instance=ExtResource("4_04xdj")]
+position = Vector2(15303, 250)
+
+[node name="Tree321" parent="YSort/Trees" unique_id=734823503 instance=ExtResource("4_04xdj")]
+position = Vector2(15460, 156)
+
+[node name="Tree322" parent="YSort/Trees" unique_id=73794257 instance=ExtResource("4_04xdj")]
+position = Vector2(15616, 233)
+
+[node name="Tree325" parent="YSort/Trees" unique_id=1501815478 instance=ExtResource("4_04xdj")]
+position = Vector2(15760, 144)
+
+[node name="Tree326" parent="YSort/Trees" unique_id=615445196 instance=ExtResource("4_04xdj")]
+position = Vector2(15929, 208)
+
+[node name="Tree327" parent="YSort/Trees" unique_id=78437942 instance=ExtResource("4_04xdj")]
+position = Vector2(16088, 131)
+
+[node name="Tree328" parent="YSort/Trees" unique_id=1710704728 instance=ExtResource("4_04xdj")]
+position = Vector2(16244, 208)
+
+[node name="Tree329" parent="YSort/Trees" unique_id=546288935 instance=ExtResource("4_04xdj")]
+position = Vector2(16381, 119)
+
+[node name="Tree330" parent="YSort/Trees" unique_id=810882787 instance=ExtResource("4_04xdj")]
+position = Vector2(16550, 183)
+
+[node name="Tree331" parent="YSort/Trees" unique_id=1946720646 instance=ExtResource("4_04xdj")]
+position = Vector2(16709, 106)
+
+[node name="Tree332" parent="YSort/Trees" unique_id=325364367 instance=ExtResource("4_04xdj")]
+position = Vector2(16865, 183)
+
+[node name="Tree473" parent="YSort/Trees" unique_id=1122859564 instance=ExtResource("4_04xdj")]
+position = Vector2(17244, 325)
+
+[node name="Tree341" parent="YSort/Trees" unique_id=2127743676 instance=ExtResource("4_04xdj")]
+position = Vector2(17023, 97)
+
+[node name="Tree342" parent="YSort/Trees" unique_id=932928511 instance=ExtResource("4_04xdj")]
+position = Vector2(17179, 174)
+
+[node name="Tree345" parent="YSort/Trees" unique_id=353558858 instance=ExtResource("4_04xdj")]
+position = Vector2(17335, 86)
+
+[node name="Tree346" parent="YSort/Trees" unique_id=1898032851 instance=ExtResource("4_04xdj")]
+position = Vector2(17491, 163)
+
+[node name="Tree349" parent="YSort/Trees" unique_id=1284635244 instance=ExtResource("4_04xdj")]
+position = Vector2(17649, 77)
+
+[node name="Tree350" parent="YSort/Trees" unique_id=1627536946 instance=ExtResource("4_04xdj")]
+position = Vector2(17805, 154)
+
+[node name="Tree353" parent="YSort/Trees" unique_id=868083861 instance=ExtResource("4_04xdj")]
+position = Vector2(17927, 915)
+
+[node name="Tree354" parent="YSort/Trees" unique_id=1448803699 instance=ExtResource("4_04xdj")]
+position = Vector2(18096, 979)
+
+[node name="Tree355" parent="YSort/Trees" unique_id=1953911205 instance=ExtResource("4_04xdj")]
+position = Vector2(18255, 902)
+
+[node name="Tree356" parent="YSort/Trees" unique_id=367007291 instance=ExtResource("4_04xdj")]
+position = Vector2(18411, 979)
+
+[node name="Tree357" parent="YSort/Trees" unique_id=1231433990 instance=ExtResource("4_04xdj")]
+position = Vector2(18536, 891)
+
+[node name="Tree358" parent="YSort/Trees" unique_id=1884449805 instance=ExtResource("4_04xdj")]
+position = Vector2(18692, 968)
+
+[node name="Tree359" parent="YSort/Trees" unique_id=1278746837 instance=ExtResource("4_04xdj")]
+position = Vector2(18829, 879)
+
+[node name="Tree480" parent="YSort/Trees" unique_id=1748115367 instance=ExtResource("4_04xdj")]
+position = Vector2(18918, 739)
+
+[node name="Tree481" parent="YSort/Trees" unique_id=815793072 instance=ExtResource("4_04xdj")]
+position = Vector2(18789, 640)
+
+[node name="Tree360" parent="YSort/Trees" unique_id=1873434162 instance=ExtResource("4_04xdj")]
+position = Vector2(18998, 943)
+
+[node name="Tree361" parent="YSort/Trees" unique_id=69820946 instance=ExtResource("4_04xdj")]
+position = Vector2(19157, 866)
+
+[node name="Tree362" parent="YSort/Trees" unique_id=1178923871 instance=ExtResource("4_04xdj")]
+position = Vector2(19313, 943)
+
+[node name="Tree363" parent="YSort/Trees" unique_id=2040404870 instance=ExtResource("4_04xdj")]
+position = Vector2(19455, 850)
+
+[node name="Tree364" parent="YSort/Trees" unique_id=620669338 instance=ExtResource("4_04xdj")]
+position = Vector2(19611, 927)
+
+[node name="Tree365" parent="YSort/Trees" unique_id=1207859603 instance=ExtResource("4_04xdj")]
+position = Vector2(19755, 857)
+
+[node name="Tree366" parent="YSort/Trees" unique_id=677169407 instance=ExtResource("4_04xdj")]
+position = Vector2(19924, 921)
+
+[node name="Tree367" parent="YSort/Trees" unique_id=184717638 instance=ExtResource("4_04xdj")]
+position = Vector2(20083, 844)
+
+[node name="Tree368" parent="YSort/Trees" unique_id=698646730 instance=ExtResource("4_04xdj")]
+position = Vector2(20239, 921)
+
+[node name="Tree369" parent="YSort/Trees" unique_id=346458218 instance=ExtResource("4_04xdj")]
+position = Vector2(20376, 832)
+
+[node name="Tree370" parent="YSort/Trees" unique_id=766115344 instance=ExtResource("4_04xdj")]
+position = Vector2(20545, 896)
+
+[node name="Tree371" parent="YSort/Trees" unique_id=1228343890 instance=ExtResource("4_04xdj")]
+position = Vector2(20704, 819)
+
+[node name="Tree372" parent="YSort/Trees" unique_id=21278344 instance=ExtResource("4_04xdj")]
+position = Vector2(20860, 896)
+
+[node name="Tree373" parent="YSort/Trees" unique_id=1725825738 instance=ExtResource("4_04xdj")]
+position = Vector2(17967, 83)
+
+[node name="Tree374" parent="YSort/Trees" unique_id=1812402015 instance=ExtResource("4_04xdj")]
+position = Vector2(18123, 160)
+
+[node name="Tree377" parent="YSort/Trees" unique_id=188633176 instance=ExtResource("4_04xdj")]
+position = Vector2(18281, 74)
+
+[node name="Tree378" parent="YSort/Trees" unique_id=1839655752 instance=ExtResource("4_04xdj")]
+position = Vector2(18437, 151)
+
+[node name="Tree381" parent="YSort/Trees" unique_id=117334825 instance=ExtResource("4_04xdj")]
+position = Vector2(18594, 57)
+
+[node name="Tree382" parent="YSort/Trees" unique_id=546466255 instance=ExtResource("4_04xdj")]
+position = Vector2(18750, 134)
+
+[node name="Tree385" parent="YSort/Trees" unique_id=1402775889 instance=ExtResource("4_04xdj")]
+position = Vector2(18894, 45)
+
+[node name="Tree386" parent="YSort/Trees" unique_id=460125100 instance=ExtResource("4_04xdj")]
+position = Vector2(19063, 109)
+
+[node name="Tree387" parent="YSort/Trees" unique_id=1799255084 instance=ExtResource("4_04xdj")]
+position = Vector2(19222, 32)
+
+[node name="Tree388" parent="YSort/Trees" unique_id=2120948873 instance=ExtResource("4_04xdj")]
+position = Vector2(19378, 109)
+
+[node name="Tree389" parent="YSort/Trees" unique_id=200254840 instance=ExtResource("4_04xdj")]
+position = Vector2(19515, 20)
+
+[node name="Tree390" parent="YSort/Trees" unique_id=460124506 instance=ExtResource("4_04xdj")]
+position = Vector2(19684, 84)
+
+[node name="Tree391" parent="YSort/Trees" unique_id=1716642200 instance=ExtResource("4_04xdj")]
+position = Vector2(19843, 7)
+
+[node name="Tree392" parent="YSort/Trees" unique_id=1854544755 instance=ExtResource("4_04xdj")]
+position = Vector2(19999, 84)
+
+[node name="Tree396" parent="YSort/Trees" unique_id=1982401769 instance=ExtResource("4_04xdj")]
+position = Vector2(19378, 109)
+
+[node name="Tree477" parent="YSort/Trees" unique_id=623981574 instance=ExtResource("4_04xdj")]
+position = Vector2(19305, 238)
+
+[node name="Tree478" parent="YSort/Trees" unique_id=876282088 instance=ExtResource("4_04xdj")]
+position = Vector2(19440, 309)
+
+[node name="Tree479" parent="YSort/Trees" unique_id=258812925 instance=ExtResource("4_04xdj")]
+position = Vector2(19555, 187)
+
+[node name="Tree401" parent="YSort/Trees" unique_id=947299990 instance=ExtResource("4_04xdj")]
+position = Vector2(20157, -2)
+
+[node name="Tree402" parent="YSort/Trees" unique_id=383783263 instance=ExtResource("4_04xdj")]
+position = Vector2(20313, 75)
+
+[node name="Tree405" parent="YSort/Trees" unique_id=384144021 instance=ExtResource("4_04xdj")]
+position = Vector2(20469, -13)
+
+[node name="Tree406" parent="YSort/Trees" unique_id=1515434235 instance=ExtResource("4_04xdj")]
+position = Vector2(20625, 64)
+
+[node name="Tree409" parent="YSort/Trees" unique_id=1626066890 instance=ExtResource("4_04xdj")]
+position = Vector2(20783, -22)
+
+[node name="Tree410" parent="YSort/Trees" unique_id=1745644937 instance=ExtResource("4_04xdj")]
+position = Vector2(20939, 55)
+
+[node name="Tree413" parent="YSort/Trees" unique_id=1798029277 instance=ExtResource("4_04xdj")]
+position = Vector2(21001, 819)
+
+[node name="Tree414" parent="YSort/Trees" unique_id=1468223634 instance=ExtResource("4_04xdj")]
+position = Vector2(21170, 883)
+
+[node name="Tree415" parent="YSort/Trees" unique_id=1194983948 instance=ExtResource("4_04xdj")]
+position = Vector2(21329, 806)
+
+[node name="Tree416" parent="YSort/Trees" unique_id=2045481704 instance=ExtResource("4_04xdj")]
+position = Vector2(21485, 883)
+
+[node name="Tree417" parent="YSort/Trees" unique_id=257864928 instance=ExtResource("4_04xdj")]
+position = Vector2(21610, 795)
+
+[node name="Tree418" parent="YSort/Trees" unique_id=2095152434 instance=ExtResource("4_04xdj")]
+position = Vector2(21766, 872)
+
+[node name="Tree419" parent="YSort/Trees" unique_id=1452636055 instance=ExtResource("4_04xdj")]
+position = Vector2(21903, 783)
+
+[node name="Tree420" parent="YSort/Trees" unique_id=405235287 instance=ExtResource("4_04xdj")]
+position = Vector2(22072, 847)
+
+[node name="Tree421" parent="YSort/Trees" unique_id=1443079926 instance=ExtResource("4_04xdj")]
+position = Vector2(22231, 770)
+
+[node name="Tree422" parent="YSort/Trees" unique_id=1009765019 instance=ExtResource("4_04xdj")]
+position = Vector2(22387, 847)
+
+[node name="Tree423" parent="YSort/Trees" unique_id=289424432 instance=ExtResource("4_04xdj")]
+position = Vector2(22529, 754)
+
+[node name="Tree424" parent="YSort/Trees" unique_id=1528525459 instance=ExtResource("4_04xdj")]
+position = Vector2(22685, 831)
+
+[node name="Tree425" parent="YSort/Trees" unique_id=49258575 instance=ExtResource("4_04xdj")]
+position = Vector2(22829, 761)
+
+[node name="Tree426" parent="YSort/Trees" unique_id=1457340224 instance=ExtResource("4_04xdj")]
+position = Vector2(22998, 825)
+
+[node name="Tree427" parent="YSort/Trees" unique_id=772195021 instance=ExtResource("4_04xdj")]
+position = Vector2(23157, 748)
+
+[node name="Tree428" parent="YSort/Trees" unique_id=1242602876 instance=ExtResource("4_04xdj")]
+position = Vector2(23313, 825)
+
+[node name="Tree429" parent="YSort/Trees" unique_id=1851960481 instance=ExtResource("4_04xdj")]
+position = Vector2(23450, 736)
+
+[node name="Tree430" parent="YSort/Trees" unique_id=23654482 instance=ExtResource("4_04xdj")]
+position = Vector2(23619, 800)
+
+[node name="Tree431" parent="YSort/Trees" unique_id=1207300371 instance=ExtResource("4_04xdj")]
+position = Vector2(23793, 829)
+
+[node name="Tree435" parent="YSort/Trees" unique_id=1558657484 instance=ExtResource("4_04xdj")]
+position = Vector2(23896, 977)
+
+[node name="Tree436" parent="YSort/Trees" unique_id=1385386095 instance=ExtResource("4_04xdj")]
+position = Vector2(24055, 1019)
+
+[node name="Tree439" parent="YSort/Trees" unique_id=1029527882 instance=ExtResource("4_04xdj")]
+position = Vector2(24233, 1042)
+
+[node name="Tree440" parent="YSort/Trees" unique_id=1119423073 instance=ExtResource("4_04xdj")]
+position = Vector2(24402, 1078)
+
+[node name="Tree443" parent="YSort/Trees" unique_id=1217735709 instance=ExtResource("4_04xdj")]
+position = Vector2(24579, 1061)
+
+[node name="Tree539" parent="YSort/Trees" unique_id=353052432 instance=ExtResource("4_04xdj")]
+position = Vector2(24659, 1164)
+
+[node name="Tree540" parent="YSort/Trees" unique_id=1362328531 instance=ExtResource("4_04xdj")]
+position = Vector2(24766, 1298)
+
+[node name="Tree541" parent="YSort/Trees" unique_id=1850027061 instance=ExtResource("4_04xdj")]
+position = Vector2(24704, 1453)
+
+[node name="Tree544" parent="YSort/Trees" unique_id=496101101 instance=ExtResource("4_04xdj")]
+position = Vector2(24782, 1620)
+
+[node name="Tree545" parent="YSort/Trees" unique_id=2061025624 instance=ExtResource("4_04xdj")]
+position = Vector2(24716, 1792)
+
+[node name="Tree548" parent="YSort/Trees" unique_id=507002953 instance=ExtResource("4_04xdj")]
+position = Vector2(24807, 1937)
+
+[node name="Tree549" parent="YSort/Trees" unique_id=572541353 instance=ExtResource("4_04xdj")]
+position = Vector2(24943, 2031)
+
+[node name="Tree512" parent="YSort/Trees" unique_id=476823206 instance=ExtResource("4_04xdj")]
+position = Vector2(25850, 1019)
+
+[node name="Tree513" parent="YSort/Trees" unique_id=2085624729 instance=ExtResource("4_04xdj")]
+position = Vector2(26009, 942)
+
+[node name="Tree514" parent="YSort/Trees" unique_id=342742402 instance=ExtResource("4_04xdj")]
+position = Vector2(26165, 1019)
+
+[node name="Tree521" parent="YSort/Trees" unique_id=173382586 instance=ExtResource("4_04xdj")]
+position = Vector2(26278, 1099)
+
+[node name="Tree522" parent="YSort/Trees" unique_id=747319552 instance=ExtResource("4_04xdj")]
+position = Vector2(26371, 1242)
+
+[node name="Tree523" parent="YSort/Trees" unique_id=170110546 instance=ExtResource("4_04xdj")]
+position = Vector2(26378, 1480)
+
+[node name="Tree524" parent="YSort/Trees" unique_id=1162183276 instance=ExtResource("4_04xdj")]
+position = Vector2(26268, 1363)
+
+[node name="Tree433" parent="YSort/Trees" unique_id=841586128 instance=ExtResource("4_04xdj")]
+position = Vector2(21108, -26)
+
+[node name="Tree434" parent="YSort/Trees" unique_id=279682812 instance=ExtResource("4_04xdj")]
+position = Vector2(21264, 51)
+
+[node name="Tree437" parent="YSort/Trees" unique_id=1683850121 instance=ExtResource("4_04xdj")]
+position = Vector2(21422, -35)
+
+[node name="Tree438" parent="YSort/Trees" unique_id=844412381 instance=ExtResource("4_04xdj")]
+position = Vector2(21578, 42)
+
+[node name="Tree441" parent="YSort/Trees" unique_id=1071918496 instance=ExtResource("4_04xdj")]
+position = Vector2(21735, -52)
+
+[node name="Tree442" parent="YSort/Trees" unique_id=534304976 instance=ExtResource("4_04xdj")]
+position = Vector2(21891, 25)
+
+[node name="Tree445" parent="YSort/Trees" unique_id=1818137435 instance=ExtResource("4_04xdj")]
+position = Vector2(22035, -64)
+
+[node name="Tree446" parent="YSort/Trees" unique_id=1301069537 instance=ExtResource("4_04xdj")]
+position = Vector2(22204, 0)
+
+[node name="Tree447" parent="YSort/Trees" unique_id=2027798587 instance=ExtResource("4_04xdj")]
+position = Vector2(22363, -77)
+
+[node name="Tree448" parent="YSort/Trees" unique_id=788423563 instance=ExtResource("4_04xdj")]
+position = Vector2(22519, 0)
+
+[node name="Tree449" parent="YSort/Trees" unique_id=1803965120 instance=ExtResource("4_04xdj")]
+position = Vector2(22656, -89)
+
+[node name="Tree450" parent="YSort/Trees" unique_id=1434451753 instance=ExtResource("4_04xdj")]
+position = Vector2(22825, -25)
+
+[node name="Tree451" parent="YSort/Trees" unique_id=1111157938 instance=ExtResource("4_04xdj")]
+position = Vector2(22984, -102)
+
+[node name="Tree452" parent="YSort/Trees" unique_id=1493619112 instance=ExtResource("4_04xdj")]
+position = Vector2(23140, -25)
+
+[node name="Tree461" parent="YSort/Trees" unique_id=514633127 instance=ExtResource("4_04xdj")]
+position = Vector2(23298, -111)
+
+[node name="Tree462" parent="YSort/Trees" unique_id=1580504558 instance=ExtResource("4_04xdj")]
+position = Vector2(23447, -20)
+
+[node name="Tree463" parent="YSort/Trees" unique_id=30032592 instance=ExtResource("4_04xdj")]
+position = Vector2(23298, -111)
+
+[node name="Tree465" parent="YSort/Trees" unique_id=1269696549 instance=ExtResource("4_04xdj")]
+position = Vector2(23601, 50)
+
+[node name="Tree466" parent="YSort/Trees" unique_id=1025624351 instance=ExtResource("4_04xdj")]
+position = Vector2(23738, 129)
+
+[node name="Tree467" parent="YSort/Trees" unique_id=292815914 instance=ExtResource("4_04xdj")]
+position = Vector2(23857, 225)
+
+[node name="Tree468" parent="YSort/Trees" unique_id=1133208705 instance=ExtResource("4_04xdj")]
+position = Vector2(24014, 257)
+
+[node name="Tree471" parent="YSort/Trees" unique_id=1725186682 instance=ExtResource("4_04xdj")]
+position = Vector2(24168, 266)
+
+[node name="Tree472" parent="YSort/Trees" unique_id=1758581306 instance=ExtResource("4_04xdj")]
+position = Vector2(24314, 284)
+
+[node name="Tree490" parent="YSort/Trees" unique_id=1352503115 instance=ExtResource("4_04xdj")]
+position = Vector2(24469, 300)
+
+[node name="Tree491" parent="YSort/Trees" unique_id=458031058 instance=ExtResource("4_04xdj")]
+position = Vector2(24621, 336)
+
+[node name="Tree492" parent="YSort/Trees" unique_id=1308894018 instance=ExtResource("4_04xdj")]
+position = Vector2(24763, 367)
+
+[node name="Tree493" parent="YSort/Trees" unique_id=1895186406 instance=ExtResource("4_04xdj")]
+position = Vector2(24859, 493)
+
+[node name="Tree494" parent="YSort/Trees" unique_id=2087842826 instance=ExtResource("4_04xdj")]
+position = Vector2(24926, 663)
+
+[node name="Tree469" parent="YSort/Trees" unique_id=568786641 instance=ExtResource("4_04xdj")]
+position = Vector2(25078, 709)
+
+[node name="Tree470" parent="YSort/Trees" unique_id=1203134853 instance=ExtResource("4_04xdj")]
+position = Vector2(25234, 786)
+
+[node name="Tree489" parent="YSort/Trees" unique_id=263565292 instance=ExtResource("4_04xdj")]
+position = Vector2(25741, 895)
+
+[node name="Tree495" parent="YSort/Trees" unique_id=57750627 instance=ExtResource("4_04xdj")]
+position = Vector2(25596, 988)
+
+[node name="Tree496" parent="YSort/Trees" unique_id=1562671252 instance=ExtResource("4_04xdj")]
+position = Vector2(25497, 887)
+
+[node name="Tree497" parent="YSort/Trees" unique_id=1577533712 instance=ExtResource("4_04xdj")]
+position = Vector2(25323, 879)
+
+[node name="Tree543" parent="YSort/Trees" unique_id=954458261 instance=ExtResource("4_04xdj")]
+position = Vector2(25083, 1951)
+
+[node name="Tree550" parent="YSort/Trees" unique_id=838528810 instance=ExtResource("4_04xdj")]
+position = Vector2(25239, 2028)
+
+[node name="Tree551" parent="YSort/Trees" unique_id=1067539864 instance=ExtResource("4_04xdj")]
+position = Vector2(25381, 1935)
+
+[node name="Tree552" parent="YSort/Trees" unique_id=1008732366 instance=ExtResource("4_04xdj")]
+position = Vector2(25537, 2012)
+
+[node name="Tree553" parent="YSort/Trees" unique_id=298987154 instance=ExtResource("4_04xdj")]
+position = Vector2(25681, 1942)
+
+[node name="Tree554" parent="YSort/Trees" unique_id=258010749 instance=ExtResource("4_04xdj")]
+position = Vector2(25813, 2009)
+
+[node name="Tree555" parent="YSort/Trees" unique_id=716591669 instance=ExtResource("4_04xdj")]
+position = Vector2(25928, 1946)
+
+[node name="Tree567" parent="YSort/Trees" unique_id=294630301 instance=ExtResource("4_04xdj")]
+position = Vector2(26060, 1909)
+
+[node name="Tree556" parent="YSort/Trees" unique_id=255073577 instance=ExtResource("4_04xdj")]
+position = Vector2(26101, 2083)
+
+[node name="Tree558" parent="YSort/Trees" unique_id=1853594602 instance=ExtResource("4_04xdj")]
+position = Vector2(26174, 2214)
+
+[node name="Tree559" parent="YSort/Trees" unique_id=1704069822 instance=ExtResource("4_04xdj")]
+position = Vector2(26285, 2336)
+
+[node name="Tree560" parent="YSort/Trees" unique_id=192187255 instance=ExtResource("4_04xdj")]
+position = Vector2(26468, 2353)
+
+[node name="Tree561" parent="YSort/Trees" unique_id=139310525 instance=ExtResource("4_04xdj")]
+position = Vector2(26637, 2300)
+
+[node name="Tree562" parent="YSort/Trees" unique_id=38732777 instance=ExtResource("4_04xdj")]
+position = Vector2(26782, 2213)
+
+[node name="Tree563" parent="YSort/Trees" unique_id=44710462 instance=ExtResource("4_04xdj")]
+position = Vector2(26776, 2046)
+
+[node name="Tree564" parent="YSort/Trees" unique_id=869790110 instance=ExtResource("4_04xdj")]
+position = Vector2(26735, 1879)
+
+[node name="Tree557" parent="YSort/Trees" unique_id=958511488 instance=ExtResource("4_04xdj")]
+position = Vector2(26618, 1761)
+
+[node name="Tree565" parent="YSort/Trees" unique_id=1140026165 instance=ExtResource("4_04xdj")]
+position = Vector2(26442, 1732)
+
+[node name="Tree566" parent="YSort/Trees" unique_id=1441836628 instance=ExtResource("4_04xdj")]
+position = Vector2(26297, 1660)
+
+[node name="Tree124" parent="YSort/Trees" unique_id=1150605523 instance=ExtResource("4_04xdj")]
+position = Vector2(5360, 1027)
+
+[node name="Tree126" parent="YSort/Trees" unique_id=631098025 instance=ExtResource("4_04xdj")]
+position = Vector2(5287, 1151)
+
+[node name="Tree127" parent="YSort/Trees" unique_id=1408665856 instance=ExtResource("4_04xdj")]
+position = Vector2(5177, 1223)
+
+[node name="Tree101" parent="YSort/Trees" unique_id=1291181800 instance=ExtResource("4_04xdj")]
+position = Vector2(3184, 944)
+
+[node name="Tree47" parent="YSort/Trees" unique_id=1624989954 instance=ExtResource("4_04xdj")]
+position = Vector2(1024, 1104)
+
+[node name="Tree48" parent="YSort/Trees" unique_id=1649780055 instance=ExtResource("4_04xdj")]
+position = Vector2(1133, 1198)
+
+[node name="Tree49" parent="YSort/Trees" unique_id=1954527589 instance=ExtResource("4_04xdj")]
+position = Vector2(1244, 1290)
+
+[node name="Tree50" parent="YSort/Trees" unique_id=734158889 instance=ExtResource("4_04xdj")]
+position = Vector2(1365, 1411)
+
+[node name="Tree51" parent="YSort/Trees" unique_id=370790092 instance=ExtResource("4_04xdj")]
+position = Vector2(1474, 1505)
+
+[node name="Tree52" parent="YSort/Trees" unique_id=403558373 instance=ExtResource("4_04xdj")]
+position = Vector2(1593, 1606)
+
+[node name="Tree53" parent="YSort/Trees" unique_id=916764639 instance=ExtResource("4_04xdj")]
+position = Vector2(1739, 1672)
+
+[node name="Tree54" parent="YSort/Trees" unique_id=1831530294 instance=ExtResource("4_04xdj")]
+position = Vector2(1883, 1744)
+
+[node name="Tree55" parent="YSort/Trees" unique_id=640652116 instance=ExtResource("4_04xdj")]
+position = Vector2(2025, 1818)
+
+[node name="Tree56" parent="YSort/Trees" unique_id=440130798 instance=ExtResource("4_04xdj")]
+position = Vector2(2169, 1863)
+
+[node name="Tree70" parent="YSort/Trees" unique_id=2050030106 instance=ExtResource("4_04xdj")]
+position = Vector2(2270, 1972)
+
+[node name="Tree71" parent="YSort/Trees" unique_id=201706554 instance=ExtResource("4_04xdj")]
+position = Vector2(2343, 2104)
+
+[node name="Tree72" parent="YSort/Trees" unique_id=927319662 instance=ExtResource("4_04xdj")]
+position = Vector2(2452, 2192)
+
+[node name="Tree73" parent="YSort/Trees" unique_id=1632677721 instance=ExtResource("4_04xdj")]
+position = Vector2(2558, 2301)
+
+[node name="Tree74" parent="YSort/Trees" unique_id=1110412549 instance=ExtResource("4_04xdj")]
+position = Vector2(2682, 2392)
+
+[node name="Tree75" parent="YSort/Trees" unique_id=1383578280 instance=ExtResource("4_04xdj")]
+position = Vector2(2809, 2485)
+
+[node name="Tree76" parent="YSort/Trees" unique_id=136333918 instance=ExtResource("4_04xdj")]
+position = Vector2(2936, 2591)
+
+[node name="Tree77" parent="YSort/Trees" unique_id=1315503800 instance=ExtResource("4_04xdj")]
+position = Vector2(3089, 2658)
+
+[node name="Tree78" parent="YSort/Trees" unique_id=1043282930 instance=ExtResource("4_04xdj")]
+position = Vector2(3246, 2706)
+
+[node name="Tree79" parent="YSort/Trees" unique_id=85583236 instance=ExtResource("4_04xdj")]
+position = Vector2(3428, 2750)
+
+[node name="Tree81" parent="YSort/Trees" unique_id=255095231 instance=ExtResource("4_04xdj")]
+position = Vector2(3569, 2693)
+
+[node name="Tree57" parent="YSort/Trees" unique_id=668262733 instance=ExtResource("4_04xdj")]
+position = Vector2(3192, 1653)
+
+[node name="Tree58" parent="YSort/Trees" unique_id=600430714 instance=ExtResource("4_04xdj")]
+position = Vector2(3328, 1593)
+
+[node name="Tree59" parent="YSort/Trees" unique_id=416225791 instance=ExtResource("4_04xdj")]
+position = Vector2(3457, 1521)
+
+[node name="Tree60" parent="YSort/Trees" unique_id=1404349930 instance=ExtResource("4_04xdj")]
+position = Vector2(3588, 1449)
+
+[node name="Tree61" parent="YSort/Trees" unique_id=1198511787 instance=ExtResource("4_04xdj")]
+position = Vector2(3732, 1394)
+
+[node name="Tree62" parent="YSort/Trees" unique_id=1185265174 instance=ExtResource("4_04xdj")]
+position = Vector2(3839, 1318)
+
+[node name="Tree100" parent="YSort/Trees" unique_id=700913531 instance=ExtResource("4_04xdj")]
+position = Vector2(3687, 1212)
+
+[node name="Tree63" parent="YSort/Trees" unique_id=143995195 instance=ExtResource("4_04xdj")]
+position = Vector2(3981, 1242)
+
+[node name="Tree102" parent="YSort/Trees" unique_id=797094214 instance=ExtResource("4_04xdj")]
+position = Vector2(4142, 1251)
+
+[node name="Tree103" parent="YSort/Trees" unique_id=1708836323 instance=ExtResource("4_04xdj")]
+position = Vector2(4312, 1270)
+
+[node name="Tree104" parent="YSort/Trees" unique_id=1048911506 instance=ExtResource("4_04xdj")]
+position = Vector2(4508, 1235)
+
+[node name="Tree105" parent="YSort/Trees" unique_id=978141112 instance=ExtResource("4_04xdj")]
+position = Vector2(4696, 1270)
+
+[node name="Tree106" parent="YSort/Trees" unique_id=1110712468 instance=ExtResource("4_04xdj")]
+position = Vector2(4875, 1227)
+
+[node name="Tree107" parent="YSort/Trees" unique_id=196158127 instance=ExtResource("4_04xdj")]
+position = Vector2(5063, 1262)
+
+[node name="Tree64" parent="YSort/Trees" unique_id=654851416 instance=ExtResource("4_04xdj")]
+position = Vector2(3252, 1776)
+
+[node name="Tree65" parent="YSort/Trees" unique_id=495881152 instance=ExtResource("4_04xdj")]
+position = Vector2(3381, 1811)
+
+[node name="Tree66" parent="YSort/Trees" unique_id=1861964811 instance=ExtResource("4_04xdj")]
+position = Vector2(3560, 1842)
+
+[node name="Tree67" parent="YSort/Trees" unique_id=809979037 instance=ExtResource("4_04xdj")]
+position = Vector2(3705, 1902)
+
+[node name="Tree68" parent="YSort/Trees" unique_id=1058968670 instance=ExtResource("4_04xdj")]
+position = Vector2(3830, 1975)
+
+[node name="Tree69" parent="YSort/Trees" unique_id=494972564 instance=ExtResource("4_04xdj")]
+position = Vector2(3901, 2072)
+
+[node name="Tree95" parent="YSort/Trees" unique_id=370864739 instance=ExtResource("4_04xdj")]
+position = Vector2(3906, 2208)
+
+[node name="Tree96" parent="YSort/Trees" unique_id=753171250 instance=ExtResource("4_04xdj")]
+position = Vector2(3893, 2374)
+
+[node name="Tree97" parent="YSort/Trees" unique_id=487645117 instance=ExtResource("4_04xdj")]
+position = Vector2(3844, 2537)
+
+[node name="Tree98" parent="YSort/Trees" unique_id=1859751119 instance=ExtResource("4_04xdj")]
+position = Vector2(3729, 2650)
+
+[node name="Gems" type="Node2D" parent="YSort" unique_id=1025749830]
+y_sort_enabled = true
+
+[node name="Gem" parent="YSort/Gems" unique_id=112529825 instance=ExtResource("10_snqp0")]
+position = Vector2(4655, 697)
+
+[node name="Gem2" parent="YSort/Gems" unique_id=1621709429 instance=ExtResource("10_snqp0")]
+position = Vector2(26432, 1888)
+gem_type = 2
+
+[node name="Gem3" parent="YSort/Gems" unique_id=341964129 instance=ExtResource("10_snqp0")]
+position = Vector2(24315, 480)
+gem_type = 1
+
+[node name="Rocks" type="Node2D" parent="YSort" unique_id=1028856634]
+y_sort_enabled = true
+
+[node name="Rock" parent="YSort/Rocks" unique_id=1984704730 instance=ExtResource("6_04xdj")]
+position = Vector2(-292, 641)
+
+[node name="Rock2" parent="YSort/Rocks" unique_id=238587232 instance=ExtResource("6_04xdj")]
+position = Vector2(100, 203)
+
+[node name="Rock14" parent="YSort/Rocks" unique_id=951689046 instance=ExtResource("6_04xdj")]
+position = Vector2(10414, 684)
+
+[node name="RockBody" type="StaticBody2D" parent="YSort/Rocks/Rock14" unique_id=955835869]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Rocks/Rock14/RockBody" unique_id=1204791651]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_mru47")
+
+[node name="Rock15" parent="YSort/Rocks" unique_id=336309466 instance=ExtResource("6_04xdj")]
+position = Vector2(12836, 482)
+
+[node name="RockBody" type="StaticBody2D" parent="YSort/Rocks/Rock15" unique_id=1564636247]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Rocks/Rock15/RockBody" unique_id=173796478]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_mru47")
+
+[node name="Rock16" parent="YSort/Rocks" unique_id=140700283 instance=ExtResource("6_04xdj")]
+position = Vector2(13495, 704)
+
+[node name="RockBody" type="StaticBody2D" parent="YSort/Rocks/Rock16" unique_id=629342663]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Rocks/Rock16/RockBody" unique_id=902252346]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_mru47")
+
+[node name="Rock17" parent="YSort/Rocks" unique_id=1247636796 instance=ExtResource("6_04xdj")]
+position = Vector2(17313, 378)
+
+[node name="Rock18" parent="YSort/Rocks" unique_id=944094246 instance=ExtResource("6_04xdj")]
+position = Vector2(19386, 336)
+
+[node name="Rock20" parent="YSort/Rocks" unique_id=176535954 instance=ExtResource("6_04xdj")]
+position = Vector2(19401, 386)
+
+[node name="Rock21" parent="YSort/Rocks" unique_id=414219655 instance=ExtResource("6_04xdj")]
+position = Vector2(19418, 438)
+
+[node name="Rock22" parent="YSort/Rocks" unique_id=1075301984 instance=ExtResource("6_04xdj")]
+position = Vector2(20845, 632)
+
+[node name="Rock23" parent="YSort/Rocks" unique_id=1556437899 instance=ExtResource("6_04xdj")]
+position = Vector2(21724, 47)
+
+[node name="Rock24" parent="YSort/Rocks" unique_id=1000733407 instance=ExtResource("6_04xdj")]
+position = Vector2(25119, 773)
+
+[node name="Rock19" parent="YSort/Rocks" unique_id=1454962779 instance=ExtResource("6_04xdj")]
+position = Vector2(18794, 339)
+
+[node name="Rock20" parent="YSort/Rocks/Rock19" unique_id=1177749834 instance=ExtResource("6_04xdj")]
+position = Vector2(-36, 55)
+
+[node name="Rock21" parent="YSort/Rocks/Rock19" unique_id=1565840673 instance=ExtResource("6_04xdj")]
+position = Vector2(33, 86)
+
+[node name="Rock18" parent="YSort/Rocks/Rock19" unique_id=1962150012 instance=ExtResource("6_04xdj")]
+position = Vector2(55, 133)
+
+[node name="RockGroupBody" type="StaticBody2D" parent="YSort/Rocks/Rock19" unique_id=981642397]
+collision_layer = 4
+
+[node name="GroupShape" type="CollisionPolygon2D" parent="YSort/Rocks/Rock19/RockGroupBody" unique_id=1390538863]
+polygon = PackedVector2Array(-63, -46, -98, 41, -97, 62, -28, 92, -5, 149, 119, 147, 118, 97, 89, 51, 58, -35, 1, -55)
+
+[node name="Rock3" parent="YSort/Rocks" unique_id=457258086 instance=ExtResource("6_04xdj")]
+position = Vector2(828, 974)
+
+[node name="Rock7" parent="YSort/Rocks" unique_id=1459049705 instance=ExtResource("6_04xdj")]
+position = Vector2(317, 869)
+
+[node name="Rock5" parent="YSort/Rocks" unique_id=149851129 instance=ExtResource("6_04xdj")]
+position = Vector2(-150, 150)
+
+[node name="Rock9" parent="YSort/Rocks" unique_id=1889277816 instance=ExtResource("6_04xdj")]
+position = Vector2(1463, 581)
+
+[node name="Rock8" parent="YSort/Rocks" unique_id=139471218 instance=ExtResource("6_04xdj")]
+position = Vector2(-617, 486)
+
+[node name="Rock6" parent="YSort/Rocks" unique_id=2114532320 instance=ExtResource("6_04xdj")]
+position = Vector2(794, 24)
+
+[node name="Rock4" parent="YSort/Rocks" unique_id=1382444950 instance=ExtResource("6_04xdj")]
+position = Vector2(1230, 10)
+
+[node name="Rock10" parent="YSort/Rocks" unique_id=2144509598 instance=ExtResource("6_04xdj")]
+position = Vector2(2320, 1235)
+
+[node name="Rock12" parent="YSort/Rocks" unique_id=966821183 instance=ExtResource("6_04xdj")]
+position = Vector2(3270, 981)
+
+[node name="Rock13" parent="YSort/Rocks" unique_id=1736810628 instance=ExtResource("6_04xdj")]
+position = Vector2(3565, 1130)
+
+[node name="Rock11" parent="YSort/Rocks" unique_id=1303803643 instance=ExtResource("6_04xdj")]
+position = Vector2(1999, 1384)
+
+[node name="Fern" parent="YSort" unique_id=2014301448 instance=ExtResource("8_6tgm8")]
+position = Vector2(-394, 350)
+
+[node name="Mushroom" parent="YSort" unique_id=325081121 instance=ExtResource("9_gu70t")]
+position = Vector2(-249, 199)
+
+[node name="GemPedistal" parent="YSort" unique_id=1379573540 instance=ExtResource("10_gu70t")]
+position = Vector2(4657, 737)
+
+[node name="Moles" type="Node2D" parent="YSort" unique_id=500840553]
+y_sort_enabled = true
+
+[node name="MoleSwitch" parent="YSort/Moles" unique_id=239112781 instance=ExtResource("11_v3edh")]
+position = Vector2(2244, 1051)
+
+[node name="MoleSwitch2" parent="YSort/Moles" unique_id=1788403909 instance=ExtResource("11_v3edh")]
+position = Vector2(2075, 895)
+self_color_red = false
+
+[node name="MoleSwitch3" parent="YSort/Moles" unique_id=125306766 instance=ExtResource("11_v3edh")]
+position = Vector2(3317, 2155)
+self_color_red = false
+
+[node name="Popups" type="Node2D" parent="YSort" unique_id=1899563912]
+y_sort_enabled = true
+
+[node name="RedWall1" parent="YSort/Popups" unique_id=1298778276 instance=ExtResource("16_8uafd")]
+position = Vector2(2123, 1317)
+
+[node name="RedWall2" parent="YSort/Popups" unique_id=1408007416 instance=ExtResource("16_8uafd")]
+position = Vector2(2092, 1332)
+
+[node name="RedWall3" parent="YSort/Popups" unique_id=829149204 instance=ExtResource("16_8uafd")]
+position = Vector2(2061, 1347)
+
+[node name="RedWall4" parent="YSort/Popups" unique_id=863794700 instance=ExtResource("16_8uafd")]
+position = Vector2(2154, 1302)
+
+[node name="RedWall5" parent="YSort/Popups" unique_id=1227431705 instance=ExtResource("16_8uafd")]
+position = Vector2(2185, 1287)
+
+[node name="RedWall6" parent="YSort/Popups" unique_id=1036899533 instance=ExtResource("16_8uafd")]
+position = Vector2(2216, 1272)
+
+[node name="RedWall7" parent="YSort/Popups" unique_id=575919693 instance=ExtResource("16_8uafd")]
+position = Vector2(2247, 1257)
+
+[node name="PopupWall" parent="YSort/Popups" unique_id=1146644669 instance=ExtResource("16_8uafd")]
+position = Vector2(3328, 1004)
+wall_color = 1
+
+[node name="PopupWall2" parent="YSort/Popups" unique_id=537104441 instance=ExtResource("16_8uafd")]
+position = Vector2(3359, 1019)
+wall_color = 1
+
+[node name="PopupWall3" parent="YSort/Popups" unique_id=250615634 instance=ExtResource("16_8uafd")]
+position = Vector2(3390, 1034)
+wall_color = 1
+
+[node name="PopupWall4" parent="YSort/Popups" unique_id=1437080158 instance=ExtResource("16_8uafd")]
+position = Vector2(3421, 1049)
+wall_color = 1
+
+[node name="PopupWall5" parent="YSort/Popups" unique_id=1970260564 instance=ExtResource("16_8uafd")]
+position = Vector2(3452, 1064)
+wall_color = 1
+
+[node name="PopupWall6" parent="YSort/Popups" unique_id=1296391820 instance=ExtResource("16_8uafd")]
+position = Vector2(3483, 1079)
+wall_color = 1
+
+[node name="BossDoor" type="Node2D" parent="YSort/Popups" unique_id=583597481]
+y_sort_enabled = true
+
+[node name="PopupWall7" parent="YSort/Popups/BossDoor" unique_id=1292073458 instance=ExtResource("16_8uafd")]
+position = Vector2(3514, 1094)
+wall_color = 1
+
+[node name="PopupWall8" parent="YSort/Popups/BossDoor" unique_id=400420872 instance=ExtResource("16_8uafd")]
+position = Vector2(25320, 900)
+wall_color = 1
+
+[node name="PopupWall9" parent="YSort/Popups/BossDoor" unique_id=1449633267 instance=ExtResource("16_8uafd")]
+position = Vector2(25289, 915)
+wall_color = 1
+
+[node name="PopupWall10" parent="YSort/Popups/BossDoor" unique_id=1175562909 instance=ExtResource("16_8uafd")]
+position = Vector2(25258, 930)
+wall_color = 1
+
+[node name="PopupWall11" parent="YSort/Popups/BossDoor" unique_id=579820956 instance=ExtResource("16_8uafd")]
+position = Vector2(25227, 945)
+wall_color = 1
+
+[node name="PopupWall12" parent="YSort/Popups/BossDoor" unique_id=192914667 instance=ExtResource("16_8uafd")]
+position = Vector2(25196, 960)
+wall_color = 1
+
+[node name="PopupWall13" parent="YSort/Popups/BossDoor" unique_id=597218886 instance=ExtResource("16_8uafd")]
+position = Vector2(25165, 975)
+wall_color = 1
+
+[node name="PopupWall14" parent="YSort/Popups/BossDoor" unique_id=333669457 instance=ExtResource("16_8uafd")]
+position = Vector2(25134, 990)
+wall_color = 1
+
+[node name="PopupWall15" parent="YSort/Popups/BossDoor" unique_id=20786593 instance=ExtResource("16_8uafd")]
+position = Vector2(25103, 1005)
+wall_color = 1
+
+[node name="PopupWall16" parent="YSort/Popups/BossDoor" unique_id=1826444245 instance=ExtResource("16_8uafd")]
+position = Vector2(25072, 1020)
+wall_color = 1
+
+[node name="PopupWall17" parent="YSort/Popups/BossDoor" unique_id=1571000269 instance=ExtResource("16_8uafd")]
+position = Vector2(25041, 1035)
+wall_color = 1
+
+[node name="PopupWall18" parent="YSort/Popups/BossDoor" unique_id=420841250 instance=ExtResource("16_8uafd")]
+position = Vector2(25010, 1050)
+wall_color = 1
+
+[node name="PopupWall19" parent="YSort/Popups/BossDoor" unique_id=839016151 instance=ExtResource("16_8uafd")]
+position = Vector2(24979, 1065)
+wall_color = 1
+
+[node name="PopupWall20" parent="YSort/Popups/BossDoor" unique_id=84238515 instance=ExtResource("16_8uafd")]
+position = Vector2(24948, 1080)
+wall_color = 1
+
+[node name="PopupWall21" parent="YSort/Popups/BossDoor" unique_id=5070601 instance=ExtResource("16_8uafd")]
+position = Vector2(24917, 1095)
+wall_color = 1
+
+[node name="PopupWall22" parent="YSort/Popups/BossDoor" unique_id=461235110 instance=ExtResource("16_8uafd")]
+position = Vector2(24886, 1110)
+wall_color = 1
+
+[node name="PopupWall23" parent="YSort/Popups/BossDoor" unique_id=685116126 instance=ExtResource("16_8uafd")]
+position = Vector2(24855, 1125)
+wall_color = 1
+
+[node name="PopupWall24" parent="YSort/Popups/BossDoor" unique_id=1124310669 instance=ExtResource("16_8uafd")]
+position = Vector2(24824, 1140)
+wall_color = 1
+
+[node name="BossDoor2" type="Node2D" parent="YSort/Popups" unique_id=1050915503]
+y_sort_enabled = true
+
+[node name="PopupWall" parent="YSort/Popups/BossDoor2" unique_id=1826223988 instance=ExtResource("16_8uafd")]
+position = Vector2(26105, 1736)
+wall_color = 1
+
+[node name="PopupWall2" parent="YSort/Popups/BossDoor2" unique_id=26973227 instance=ExtResource("16_8uafd")]
+position = Vector2(26137, 1721)
+wall_color = 1
+
+[node name="PopupWall3" parent="YSort/Popups/BossDoor2" unique_id=921338074 instance=ExtResource("16_8uafd")]
+position = Vector2(26169, 1706)
+wall_color = 1
+
+[node name="PopupWall4" parent="YSort/Popups/BossDoor2" unique_id=140751980 instance=ExtResource("16_8uafd")]
+position = Vector2(26201, 1691)
+wall_color = 1
+
+[node name="PopupWall5" parent="YSort/Popups/BossDoor2" unique_id=325125961 instance=ExtResource("16_8uafd")]
+position = Vector2(26233, 1676)
+wall_color = 1
+
+[node name="Rabbits" type="Node2D" parent="YSort" unique_id=1107006533]
+y_sort_enabled = true
+
+[node name="Rabbit" parent="YSort/Rabbits" unique_id=1737241878 instance=ExtResource("17_mru47")]
+position = Vector2(6036, 735)
+
+[node name="Rabbit8" parent="YSort/Rabbits" unique_id=167820494 instance=ExtResource("17_mru47")]
+position = Vector2(6446, 664)
+
+[node name="Rabbit2" parent="YSort/Rabbits" unique_id=831041694 instance=ExtResource("17_mru47")]
+position = Vector2(8309, 659)
+
+[node name="Rabbit4" parent="YSort/Rabbits" unique_id=1710062373 instance=ExtResource("17_mru47")]
+position = Vector2(10133, 550)
+
+[node name="Rabbit6" parent="YSort/Rabbits" unique_id=316436621 instance=ExtResource("17_mru47")]
+position = Vector2(12642, 563)
+
+[node name="Rabbit7" parent="YSort/Rabbits" unique_id=1864786818 instance=ExtResource("17_mru47")]
+position = Vector2(14823, 409)
+
+[node name="Rabbit9" parent="YSort/Rabbits" unique_id=174455920 instance=ExtResource("17_mru47")]
+position = Vector2(17363, 299)
+
+[node name="Rabbit10" parent="YSort/Rabbits" unique_id=134005256 instance=ExtResource("17_mru47")]
+position = Vector2(18871, 376)
+
+[node name="Rabbit11" parent="YSort/Rabbits" unique_id=49389759 instance=ExtResource("17_mru47")]
+position = Vector2(20664, 288)
+
+[node name="Rabbit12" parent="YSort/Rabbits" unique_id=1644175476 instance=ExtResource("17_mru47")]
+position = Vector2(21497, 337)
+
+[node name="Rabbit13" parent="YSort/Rabbits" unique_id=1649089461 instance=ExtResource("17_mru47")]
+position = Vector2(22625, 250)
+
+[node name="Rabbit5" parent="YSort/Rabbits" unique_id=1240272619 instance=ExtResource("17_mru47")]
+position = Vector2(10323, 809)
+
+[node name="GemPedistal2" parent="YSort" unique_id=552936218 instance=ExtResource("10_gu70t")]
+position = Vector2(24320, 508)
+
+[node name="Fern2" parent="YSort" unique_id=1774683981 instance=ExtResource("8_6tgm8")]
+position = Vector2(24124, 390)
+
+[node name="Mushroom2" parent="YSort" unique_id=1649151783 instance=ExtResource("9_gu70t")]
+position = Vector2(23916, 640)
+
+[node name="Boar" parent="YSort" unique_id=698321690 instance=ExtResource("18_dvon1")]
+position = Vector2(26026, 1550)
+
+[node name="GemPedistal3" parent="YSort" unique_id=642669066 instance=ExtResource("10_gu70t")]
+position = Vector2(26432, 1920)
+
+[node name="ParaGround" type="Node2D" parent="." unique_id=737889480]
+z_index = -2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="GroundLayer" type="Parallax2D" parent="ParaGround" unique_id=195572500]
+repeat_size = Vector2(1280, 720)
+
+[node name="GroundSprite" type="Sprite2D" parent="ParaGround/GroundLayer" unique_id=1413381620]
+texture = ExtResource("19_mru47")
+centered = false
+
+[node name="ArenaCenter" type="Marker2D" parent="." unique_id=344959946]
+position = Vector2(25528, 1349)
+
+[node name="CheatTeleport" type="Marker2D" parent="." unique_id=1402367449]
+position = Vector2(23064, 300)
+
+[node name="FlashBackground" type="Node2D" parent="." unique_id=428886321]
+z_index = 3
+position = Vector2(-492, 180)
+
+[node name="FloatingTouchJoystick" parent="FlashBackground" unique_id=1856481914 instance=ExtResource("20_mru47")]
+position = Vector2(-640, -360)
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="FlashBackground" unique_id=391900244]
+position = Vector2(140, -141)
+shape = SubResource("ConvexPolygonShape2D_mru47")
+action = "attack"
+
+[node name="HungerBar" parent="FlashBackground" unique_id=1421840490 instance=ExtResource("7_o6fyn")]
+offset_left = -226.0
+offset_top = 322.0
+offset_right = 228.0
+offset_bottom = 349.0
+
+[node name="HungerAura" parent="FlashBackground" unique_id=1488519558 instance=ExtResource("25_fkxdu")]
+position = Vector2(-640, -360)
+
+[node name="Flash" type="ColorRect" parent="FlashBackground" unique_id=565647392]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ScreenFade" parent="FlashBackground" unique_id=2038614977 instance=ExtResource("9_kq6dd")]
+visible = false
+modulate = Color(1, 1, 1, 1)
+z_index = 100
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="WolfAutoTarget" type="Marker2D" parent="." unique_id=225673955]
+position = Vector2(-338.02875, 280.21545)
+
+[connection signal="body_entered" from="Walls/BossDoorTrigger" to="." method="_on_boss_door_trigger_body_entered"]
+[connection signal="body_entered" from="QuietTrigger" to="." method="_on_quiet_trigger_body_entered"]
+[connection signal="fade_out_complete" from="FlashBackground/ScreenFade" to="." method="_on_screen_fade_out_complete"]

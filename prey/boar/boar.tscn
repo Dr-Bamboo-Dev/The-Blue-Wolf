@@ -1,0 +1,427 @@
+[gd_scene format=3 uid="uid://c2dxhnogqep8v"]
+
+[ext_resource type="Script" uid="uid://cdlbomjefw087" path="res://prey/boar/boar.gd" id="1_inchl"]
+[ext_resource type="Texture2D" uid="uid://cfmdpojdldegb" path="res://prey/boar/boar2_sheet.png" id="1_src0i"]
+[ext_resource type="Material" uid="uid://co408wytrosfe" path="res://prey/boar/boar_material.tres" id="2_636v0"]
+[ext_resource type="Script" uid="uid://4s2vr1oxi774" path="res://prey/state_machine.gd" id="2_src0i"]
+[ext_resource type="Texture2D" uid="uid://cn20j33b23d3o" path="res://prey/boar/ouch_eye.png" id="3_brry1"]
+[ext_resource type="Script" uid="uid://digguwin05ydd" path="res://prey/boar/inactive.gd" id="4_rhih2"]
+[ext_resource type="Script" uid="uid://bmx7lomk7tase" path="res://prey/boar/idle.gd" id="5_5d8ra"]
+[ext_resource type="Script" uid="uid://c4ldy24eeo5j" path="res://prey/boar/charge.gd" id="6_brry1"]
+[ext_resource type="Script" uid="uid://cyqy5r2ssu6tt" path="res://prey/boar/dash.gd" id="7_5cy28"]
+[ext_resource type="Curve" uid="uid://b8h76xjdy0ebk" path="res://prey/boar/boar_acceleration_curve.tres" id="8_rhih2"]
+[ext_resource type="Script" uid="uid://cis5i4k5qpsvw" path="res://prey/boar/flee.gd" id="9_5d8ra"]
+[ext_resource type="AudioStream" uid="uid://d1fsefavddqu7" path="res://audio/sfx/gallop.wav" id="11_5cy28"]
+[ext_resource type="Script" uid="uid://cs7egs7rbno54" path="res://prey/boar/death.gd" id="12_0s5vh"]
+[ext_resource type="AudioStream" uid="uid://d1a8fe3xqcyda" path="res://audio/sfx/boar_squeal.wav" id="12_mrxt6"]
+[ext_resource type="AudioStream" uid="uid://bcfnxed0ldjvv" path="res://audio/sfx/boar_grunt.wav" id="13_c0miv"]
+[ext_resource type="AudioStream" uid="uid://cfu6f3ehp8tex" path="res://audio/sfx/heavy_hit_thud.wav" id="14_dgeg8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yhifk"]
+radius = 22.0
+height = 150.0
+
+[sub_resource type="Animation" id="Animation_wdhxm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoarSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BoarSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -63)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BoarSprite:material:shader_parameter/flash_intensity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.15]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BoarSprite:material:shader_parameter/active")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_7h2oa"]
+resource_name = "charge"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoarSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BoarSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.40000004),
+"transitions": PackedFloat32Array(0.26794216, 1.7411013, 1),
+"update": 0,
+"values": [Vector2(0, -63), Vector2(0, -76), Vector2(0, -63)]
+}
+
+[sub_resource type="Animation" id="Animation_b43ll"]
+resource_name = "dash"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoarSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20000002),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 1]
+}
+
+[sub_resource type="Animation" id="Animation_vkjhl"]
+resource_name = "panic"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoarSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.36666667, 0.5, 0.6, 0.6666667, 0.7, 0.73333335, 0.76666665, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 1, 2, 1, 2, 1, 2, 1, 2, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BoarSprite:material:shader_parameter/d_flash_intensity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BoarSprite:material:shader_parameter/d_active")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StateMachine/Death")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.16666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"trigger_explode_sound"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("StateMachine/Death")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.96666664),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"trigger_explode_screen_shake"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b43ll"]
+_data = {
+&"RESET": SubResource("Animation_wdhxm"),
+&"charge": SubResource("Animation_7h2oa"),
+&"dash": SubResource("Animation_b43ll"),
+&"panic": SubResource("Animation_vkjhl")
+}
+
+[sub_resource type="Animation" id="Animation_ur2j4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../BoarSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0s5vh"]
+resource_name = "shrink"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../BoarSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vkjhl"]
+_data = {
+&"RESET": SubResource("Animation_ur2j4"),
+&"shrink": SubResource("Animation_0s5vh")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7h2oa"]
+radius = 43.0
+height = 154.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rhih2"]
+radius = 29.0
+height = 188.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5d8ra"]
+radius = 53.0
+height = 264.0
+
+[node name="Boar" type="CharacterBody2D" unique_id=377739265]
+collision_layer = 12
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("1_inchl")
+
+[node name="BoarShape" type="CollisionShape2D" parent="." unique_id=1969843834]
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_yhifk")
+
+[node name="BoarSprite" type="Sprite2D" parent="." unique_id=1265108710]
+material = ExtResource("2_636v0")
+position = Vector2(0, -63)
+texture = ExtResource("1_src0i")
+offset = Vector2(0.5, 0.5)
+hframes = 3
+
+[node name="OuchEyeSprite" type="Sprite2D" parent="BoarSprite" unique_id=1714769258]
+visible = false
+position = Vector2(111, -2)
+scale = Vector2(0.30000013, 0.30303016)
+texture = ExtResource("3_brry1")
+
+[node name="WallRay" type="RayCast2D" parent="." unique_id=1420690294]
+z_index = 1
+target_position = Vector2(130, 0)
+collision_mask = 4
+
+[node name="BoarAnimator" type="AnimationPlayer" parent="." unique_id=2040963876]
+libraries/ = SubResource("AnimationLibrary_b43ll")
+
+[node name="StateMachine" type="Node" parent="." unique_id=2104003632 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_src0i")
+initial_state = NodePath("Inactive")
+metadata/_custom_type_script = "uid://4s2vr1oxi774"
+
+[node name="Inactive" type="Node" parent="StateMachine" unique_id=147860759 node_paths=PackedStringArray("boar", "boar_sprite", "animator")]
+script = ExtResource("4_rhih2")
+boar = NodePath("../..")
+boar_sprite = NodePath("../../BoarSprite")
+animator = NodePath("../../BoarAnimator")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1375660533 node_paths=PackedStringArray("boar", "boar_sprite", "wall_ray", "animator", "wall_area", "ouch_eye_sprite")]
+script = ExtResource("5_5d8ra")
+boar = NodePath("../..")
+boar_sprite = NodePath("../../BoarSprite")
+wall_ray = NodePath("../../WallRay")
+animator = NodePath("../../BoarAnimator")
+wall_area = NodePath("../../WallArea")
+ouch_eye_sprite = NodePath("../../BoarSprite/OuchEyeSprite")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="IdleTimer" type="Timer" parent="StateMachine/Idle" unique_id=349997950]
+wait_time = 0.4
+one_shot = true
+
+[node name="Charge" type="Node" parent="StateMachine" unique_id=1262036012 node_paths=PackedStringArray("boar", "animator", "ouch_eye_sprite", "boar_grunt")]
+script = ExtResource("6_brry1")
+boar = NodePath("../..")
+animator = NodePath("../../BoarAnimator")
+ouch_eye_sprite = NodePath("../../BoarSprite/OuchEyeSprite")
+boar_grunt = NodePath("../../BoarGrunt")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="Dash" type="Node" parent="StateMachine" unique_id=1529030455 node_paths=PackedStringArray("boar", "animator", "wall_ray", "ouch_eye_sprite", "boar_gallop", "boar_thud")]
+script = ExtResource("7_5cy28")
+boar = NodePath("../..")
+animator = NodePath("../../BoarAnimator")
+wall_ray = NodePath("../../WallRay")
+acceleration_curve = ExtResource("8_rhih2")
+ouch_eye_sprite = NodePath("../../BoarSprite/OuchEyeSprite")
+boar_gallop = NodePath("../../BoarGallop")
+boar_thud = NodePath("../../BoarThud")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="GallopRate" type="Timer" parent="StateMachine/Dash" unique_id=1609307674]
+wait_time = 0.4
+
+[node name="Flee" type="Node" parent="StateMachine" unique_id=1183552595 node_paths=PackedStringArray("boar", "wall_ray", "animator", "ouch_eye_sprite", "attack_shape", "boar_gallop")]
+script = ExtResource("9_5d8ra")
+boar = NodePath("../..")
+wall_ray = NodePath("../../WallRay")
+animator = NodePath("../../BoarAnimator")
+acceleration_curve = ExtResource("8_rhih2")
+ouch_eye_sprite = NodePath("../../BoarSprite/OuchEyeSprite")
+attack_shape = NodePath("../../AttackArea/AreaShape")
+boar_gallop = NodePath("../../BoarGallop")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="GallopRate" type="Timer" parent="StateMachine/Flee" unique_id=724854451]
+wait_time = 0.3
+
+[node name="Death" type="Node" parent="StateMachine" unique_id=1196975678 node_paths=PackedStringArray("boar", "boar_sprite", "ouch_eye_sprite", "ouch_area", "boar_animator")]
+script = ExtResource("12_0s5vh")
+boar = NodePath("../..")
+boar_sprite = NodePath("../../BoarSprite")
+ouch_eye_sprite = NodePath("../../BoarSprite/OuchEyeSprite")
+ouch_area = NodePath("../../OuchArea")
+boar_animator = NodePath("../../BoarAnimator")
+metadata/_custom_type_script = "uid://bawrq71rehyr0"
+
+[node name="DeathAnimator" type="AnimationPlayer" parent="StateMachine/Death" unique_id=356195352]
+libraries/ = SubResource("AnimationLibrary_vkjhl")
+
+[node name="HamDelay" type="Timer" parent="StateMachine/Death" unique_id=1212238261]
+
+[node name="OuchArea" type="Area2D" parent="." unique_id=1211420349 groups=["Food"]]
+position = Vector2(-18, -32)
+collision_layer = 64
+collision_mask = 2
+
+[node name="AreaShape" type="CollisionShape2D" parent="OuchArea" unique_id=145994058]
+position = Vector2(-2, 0)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_7h2oa")
+debug_color = Color(0.80784315, 0.36862746, 0.50980395, 0.41960785)
+
+[node name="BoarVisNotifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=769510260]
+rect = Rect2(-150, -141, 300, 163)
+
+[node name="AimDebug" type="Line2D" parent="." unique_id=1299282414]
+visible = false
+points = PackedVector2Array(0, 0, 130, 0)
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=1875495930]
+position = Vector2(27, 0)
+collision_layer = 4096
+collision_mask = 8192
+
+[node name="AreaShape" type="CollisionShape2D" parent="AttackArea" unique_id=1663417037]
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_rhih2")
+debug_color = Color(0.9992233, 0, 0.13326767, 0.41960785)
+
+[node name="WallArea" type="Area2D" parent="." unique_id=831853170]
+collision_layer = 16384
+collision_mask = 5
+
+[node name="AreaShape" type="CollisionShape2D" parent="WallArea" unique_id=1600126453]
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_5d8ra")
+debug_color = Color(0.39528, 0.61, 0.2196, 0.09803922)
+
+[node name="BoarGallop" type="AudioStreamPlayer2D" parent="." unique_id=1147450054]
+stream = ExtResource("11_5cy28")
+max_distance = 1500.0
+max_polyphony = 2
+panning_strength = 1.35
+bus = &"SFX"
+
+[node name="BoarSqueal" type="AudioStreamPlayer2D" parent="." unique_id=109756224]
+stream = ExtResource("12_mrxt6")
+attenuation = 0.6597542
+panning_strength = 1.8
+bus = &"SFX"
+
+[node name="BoarGrunt" type="AudioStreamPlayer2D" parent="." unique_id=1465048091]
+stream = ExtResource("13_c0miv")
+attenuation = 0.6155722
+panning_strength = 1.24
+bus = &"SFX"
+
+[node name="BoarThud" type="AudioStreamPlayer2D" parent="." unique_id=1772145953]
+stream = ExtResource("14_dgeg8")
+bus = &"SFX"
+
+[node name="BoarExplode" type="AudioStreamPlayer2D" parent="." unique_id=182785912]
+
+[node name="FlashTimer" type="Timer" parent="." unique_id=357272708]
+
+[connection signal="animation_finished" from="BoarAnimator" to="StateMachine/Charge" method="_on_boar_animator_animation_finished"]
+[connection signal="animation_finished" from="BoarAnimator" to="StateMachine/Death" method="_on_boar_animator_animation_finished"]
+[connection signal="timeout" from="StateMachine/Idle/IdleTimer" to="StateMachine/Idle" method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Dash/GallopRate" to="StateMachine/Dash" method="_on_gallop_rate_timeout"]
+[connection signal="timeout" from="StateMachine/Flee/GallopRate" to="StateMachine/Flee" method="_on_gallop_rate_timeout"]
+[connection signal="timeout" from="StateMachine/Death/HamDelay" to="StateMachine/Death" method="_on_ham_delay_timeout"]
+[connection signal="area_entered" from="OuchArea" to="." method="_on_ouch_area_area_entered"]
+[connection signal="area_entered" from="OuchArea" to="StateMachine/Idle" method="_on_ouch_area_area_entered"]
+[connection signal="area_entered" from="OuchArea" to="StateMachine/Charge" method="_on_ouch_area_area_entered"]
+[connection signal="area_entered" from="OuchArea" to="StateMachine/Dash" method="_on_ouch_area_area_entered"]
+[connection signal="screen_entered" from="BoarVisNotifier" to="StateMachine/Inactive" method="_on_boar_vis_notifier_screen_entered"]
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
+[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://x24ukle8nogs"]
+
+[ext_resource type="Script" uid="uid://cajqhhmqwsi6f" path="res://world/Cameras/cam_lock.gd" id="1_nx1c1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8k6gs"]
+radius = 140.0
+height = 482.0
+
+[node name="CamLock" type="Node2D"]
+script = ExtResource("1_nx1c1")
+
+[node name="CamLockCam" type="Camera2D" parent="."]
+enabled = false
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_8k6gs")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

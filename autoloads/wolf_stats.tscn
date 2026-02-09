@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcwnfj7ftto1i"]
+
+[ext_resource type="Script" uid="uid://dwybs62im8psk" path="res://autoloads/wolf_stats.gd" id="1_17gj5"]
+
+[node name="WolfStats" type="Node"]
+script = ExtResource("1_17gj5")
